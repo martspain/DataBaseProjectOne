@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Spotify Web Playback SDK Quick Start Tutorial</title>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
+    <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
+
+    <iframe src="https://open.spotify.com/embed/track/2TpxZ7JUBn3uw46aR7qd6V" width="300" height="380" frameborder="0"
+        allowtransparency="true" allow="encrypted-media"></iframe>
+
+    <script type="text/babel">
+        const getAlbum = async (albumId) => {
+            const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+                headers: {
+                    'Authorization': 'Bearer BQAITr2PYIGJpabBmKsF4CH0cVII7S5nlscxw_qrODSWLOo7y-Tzrt5nnDPtOhssxW2YlzifbEeLc0c-PzP7kz3WCLdIdy8TzPsPM2VBZMj24HQjaHjDpfNCqLFrb0ghnXkogNI6c_zI3S8qsua5sVq2_-vUGA'
+                }
+            })
+            try {
+                const data = await response.json() // Espera el response.json() para no retornar una promesa
+                return data
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getAlbum('3HNnxK7NgLXbDoxRZxNWiR').then(res => {
+            console.log(res)
+            const album = {
+                'id': res.id,
+                'name': res.name,
+                'preview_url': res.images[0].url,
+                'launch_date': res.release_date,
+                'genres': res.genres
+            }
+            const tracks = res.tracks.items.map(track => {
+                return {
+                    'id': track.id,
+                    'name': track.name,
+                    'duration_ms': track.duration_ms,
+                    'active': '1',
+                    'preview_url': track.preview_url,
+                    'album_id': album.id,
+                    'artists': track.artists.map(artist => {
+                        return {
+                            'id': artist.id,
+                            'artistic': artist.name,
+                            'username': artist.name.toLowerCase().replace(/\s/g, '')
+                        }
+                    })
+                }
+            })
+            const artists = res.artists.map(artist => {
+                return {
+                    'id': artist.id,
+                    'artistic': artist.name,
+                    'username': artist.name.toLowerCase().replace(/\s/g, '')
+                }
+            })
+            console.log(album)
+            console.log(tracks)
+            console.log(artists)
+            const insertAlbum = `INSERT INTO Album(id,name,preview_url,launch_date) VALUES ('${album.id}','${album.name}','${album.preview_url}','${album.launch_date}');`
+            console.log(insertAlbum)
+            const insertTracks = tracks.map(track => {
+                return `INSERT INTO Song(id,name,duration_ms,active,preview_url,album_id) VALUES ('${track.id}','${track.name}',${track.duration_ms},'${track.active}','${track.preview_url}','${track.album_id}');`
+            })
+            console.log(insertTracks)
+            const insertArtistForAlbum = artists.map(artist => {
+                return [`INSERT INTO Account(username,password,first_name,email) VALUES ('${artist.username}','123','${artist.artistic}','${artist.username}@gmail.com');`,
+                `INSERT INTO Artist(id,artistic_name,username) VALUES ('${artist.id}','${artist.artistic}','${artist.username}');`]
+            })
+            console.log(insertArtistForAlbum)
+            const insertAlbumArtist = artists.map(artist => {
+                return `INSERT INTO Album_Artist(album_id,artist_id) VALUES ('${album.id}','${artist.id}');`
+            })
+            console.log(insertAlbumArtist)
+            const insertArtistForSong = tracks.map(track => {
+                const ret = track.artists.map(artist => {
+                    return [`INSERT INTO Account(username,password,first_name,email) VALUES ('${artist.username}','123','${artist.artistic}','${artist.username}@gmail.com');`,
+                    `INSERT INTO Artist(id,artistic_name,username) VALUES ('${artist.id}','${artist.artistic}','${artist.username}');`,
+                    `INSERT INTO Song_Artist(song_id,artist_id) VALUES ('${track.id}','${artist.id}');`]
+                })
+                return ret
+            })
+            console.log(insertArtistForSong)
+            const insertGenres = album.genres.map(genre => {
+                return `INSERT INTO Genre(name) VALUES ('${genre}');`
+            })
+            console.log(insertGenres)
+            const insertSongGenre = tracks.map(track => {
+                const ret = album.genres.map(genre => {
+                    return `INSERT INTO Song_Genre(song_id,genre_id) VALUES ('${track.id}', (SELECT id FROM Genre WHERE Genre.name = '${genre}'));`
+                })
+                return ret
+            })
+        })
+    </script>
+
+</html>
