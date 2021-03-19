@@ -1,6 +1,6 @@
 CREATE TABLE Account (
-	username VARCHAR(20) PRIMARY KEY,
-	password VARCHAR(20) NOT NULL,
+	username VARCHAR(32) PRIMARY KEY,
+	password VARCHAR(32) NOT NULL,
 	first_name TEXT NOT NULL,
 	last_name TEXT,
 	email VARCHAR(50) NOT NULL UNIQUE
@@ -10,20 +10,20 @@ CREATE TABLE Subscription (
 	id SERIAL PRIMARY KEY,
 	start_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	renewal_date DATE NOT NULL,
-	username VARCHAR(20) NOT NULL UNIQUE,
+	username VARCHAR(32) NOT NULL UNIQUE,
 	CONSTRAINT FK_Subscription_Account FOREIGN KEY (username) REFERENCES Account (username)
 );
 
 CREATE TABLE Manager (
 	id SERIAL PRIMARY KEY,
-	username VARCHAR(20) NOT NULL UNIQUE,
+	username VARCHAR(32) NOT NULL UNIQUE,
 	CONSTRAINT FK_Manager_Account FOREIGN KEY (username) REFERENCES Account (username)
 );
 
 CREATE TABLE Artist (
 	id VARCHAR(50) PRIMARY KEY,
 	artistic_name VARCHAR(50) NOT NULL,
-	username VARCHAR(20) NOT NULL,
+	username VARCHAR(32) NOT NULL,
 	CONSTRAINT FK_Artist_Account FOREIGN KEY (username) REFERENCES Account (username)
 );
 
@@ -69,7 +69,7 @@ CREATE TABLE Reproduction (
 	id SERIAL PRIMARY KEY,
 	rep_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	song_id VARCHAR(50) NOT NULL,
-	username VARCHAR(20) NOT NULL,
+	username VARCHAR(32) NOT NULL,
 	CONSTRAINT FK_Reproduction_Song FOREIGN KEY (song_id) REFERENCES Song (id),
 	CONSTRAINT FK_Reproduction_Account FOREIGN KEY (username) REFERENCES Account (username)
 );
@@ -87,7 +87,7 @@ CREATE TABLE Playlist (
 	name TEXT NOT NULL,
 	description TEXT,
 	date_creation DATE NOT NULL DEFAULT CURRENT_DATE,
-	username VARCHAR(20) NOT NULL,
+	username VARCHAR(32) NOT NULL,
 	CONSTRAINT FK_Playlist_Account FOREIGN KEY (username) REFERENCES Account (username)
 );
 
@@ -101,7 +101,7 @@ CREATE TABLE Playlist_Song (
 
 CREATE TABLE Playlist_Account (
 	playlist_id INT NOT NULL,
-	username VARCHAR(20) NOT NULL,
+	username VARCHAR(32) NOT NULL,
 	CONSTRAINT FK_Playlist_Account_Playlist FOREIGN KEY (playlist_id) REFERENCES Playlist (id),
 	CONSTRAINT FK_Playlist_Account_Account FOREIGN KEY (username) REFERENCES Account (username),
 	PRIMARY KEY (playlist_id, username)

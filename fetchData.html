@@ -12,14 +12,14 @@
     <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
     <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
 
-    <iframe src="https://open.spotify.com/embed/track/2TpxZ7JUBn3uw46aR7qd6V" width="300" height="380" frameborder="0"
+    <iframe src="https://open.spotify.com/embed/track/2NvBw1uhQZjyXsjVnABkOu" width="300" height="380" frameborder="0"
         allowtransparency="true" allow="encrypted-media"></iframe>
 
     <script type="text/babel">
         const getAlbum = async (albumId) => {
             const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
                 headers: {
-                    'Authorization': 'Bearer BQAB1Sdq50qIvBrG8Yvm6bP0Qaj8DV4FTL5gd0geLmNyEZm0lz_4ZBG-CZvO5nZ8BYB1YNdNMIY1rS4x1aNGXJIit5QiTs4UQBuE55U3_ibGodk79Xfc5RbGW9hSaRO5F3l1weSJp3mrx9Dm7VlglS4MrQMBNw'
+                    'Authorization': 'Bearer BQDRL0jRVupaDbO6u40sxpfMDk_ccB0pfdegjvVqKQ64-zP8H3CKkYBQ6CpZe4xO3g-lSC2i-mxn_bHQrk-UOB7KYYv02gINC6-z8vAeG5b4AoJ0_PSuzn3ymGdJhH1OUA_Xu6CXbG5uHR9MbYhJwRxaJIHRdg'
                 }
             })
             try {
@@ -30,7 +30,7 @@
             }
         }
 
-        getAlbum('3HNnxK7NgLXbDoxRZxNWiR').then(res => {
+        getAlbum('2Lq2qX3hYhiuPckC8Flj21').then(res => {
             console.log(res)
             const album = {
                 'id': res.id,
