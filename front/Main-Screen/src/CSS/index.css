@@ -1,0 +1,55 @@
+@keyframes change-grad-color {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: bottom right;
+  }
+}
+@keyframes change-text-grad {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  background: #ddd;
+  background-image: linear-gradient(to top left, #191970, red, #8b0000, #8acc28, #191970);
+  background-size: 400%;
+  animation: change-grad-color 20s infinite alternate;
+}
+
+.title-content {
+  background: white;
+  width: 700vw;
+  padding: 3em;
+  box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+  border-radius: 30px;
+}
+
+.title {
+  margin: 0 0 0.5em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 6rem;
+  color: #ee6352;
+  line-height: 0.8;
+  margin: 0;
+  background-image: linear-gradient(to right, #191970, #8b0000, #8acc28, #8b0000, #191970);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 300%;
+  animation: change-text-grad 7s infinite;
+}
+
+/*# sourceMappingURL=index.css.map */
