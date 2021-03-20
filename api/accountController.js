@@ -4,16 +4,6 @@ const jwt = require('jsonwebtoken');
 
 const secretPassword = 'itsasecret';
 
-const getAccounts = (request, response) => {
-    connection.pool.query('SELECT username,first_name,last_name,email FROM Account',
-    (error, results) => {
-        if (error) {
-            throw error
-        }
-        response.status(200).json(results.rows)
-    })
-}
-
 const postAccount = (request, response) => {
     const data = request.body.variables.account
     connection.pool.query(`INSERT INTO Account(username,password,first_name,last_name,email)
@@ -38,13 +28,35 @@ const login = (request, response) => {
         if (results.rowCount > 0) {
             connection.pool.query(`SELECT username,first_name,last_name,email
             FROM Account WHERE username = '${data.username}' AND password = '${data.password}'`,
-            (error, results) => {
+            async (error, results) => {
                 if (error) throw error
                 if (results.rowCount > 0) {
-                    const token = jwt.sign({ username: data.username},
+                    const user = { account: results.rows[0] }
+                    try {
+                        const { rows } = await connection.pool.query(`SELECT * FROM Subscription 
+                        WHERE username = '${user.account.username}'`)
+                        user.subscription = rows[0]
+                    } catch (error) {
+                        throw error
+                    }
+                    try {
+                        const { rows } = await connection.pool.query(`SELECT * FROM Artist 
+                        WHERE username = '${user.account.username}'`)
+                        user.artist = rows[0]
+                    } catch (error) {
+                        throw error
+                    }
+                    try {
+                        const { rows } = await connection.pool.query(`SELECT * FROM Manager 
+                        WHERE username = '${user.account.username}'`)
+                        user.manager = rows[0]
+                    } catch (error) {
+                        throw error
+                    }
+                    const token = jwt.sign({ user },
                     secretPassword,
                     { expiresIn: '24h' })
-                    response.status(200).json({ token })
+                    response.status(200).json({ token, user })
                 } else {
                     response.status(401).json({ message: 'Contraseña incorrecta'})
                 }
@@ -56,7 +68,7 @@ const login = (request, response) => {
 }
 
 module.exports = {
-    getAccounts,
     postAccount,
     login,
+    secretPassword,
 }
