@@ -1,5 +1,5 @@
 const { request, response } = require('express')
-const connection = require('./connection')
+const connection = require('../connection')
 
 const getArtist = (request, response) => {
     const id = request.params.id

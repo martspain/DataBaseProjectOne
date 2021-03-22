@@ -1,10 +1,9 @@
 const { request, response } = require('express')
-const connection = require('./connection')
+const connection = require('../connection')
 const jwt = require('jsonwebtoken');
+const { secretPassword } = require('../verificator');
 
-const secretPassword = 'itsasecret';
-
-const postAccount = (request, response) => {
+const createAccount = (request, response) => {
     const data = request.body.variables.account
     connection.pool.query(`INSERT INTO Account(username,password,first_name,last_name,email)
     VALUES('${data.username}','${data.password}','${data.first_name}','${data.last_name}','${data.email}')`,
@@ -68,7 +67,6 @@ const login = (request, response) => {
 }
 
 module.exports = {
-    postAccount,
+    createAccount,
     login,
-    secretPassword,
 }

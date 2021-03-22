@@ -1,5 +1,5 @@
 const { request, response } = require('express')
-const connection = require('./connection')
+const connection = require('../connection')
 
 /* Crea una suscripcion por un mes a la cuenta segun el token */ 
 const subscribe = (request, response) => {

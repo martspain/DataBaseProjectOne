@@ -1,5 +1,5 @@
 const { request, response } = require('express')
-const connection = require('./connection')
+const connection = require('../connection')
 
 const getSongs = (request, response) => {
     connection.pool.query(`SELECT *, S.id, S.name, A.name AS album, A.preview_url AS cover,

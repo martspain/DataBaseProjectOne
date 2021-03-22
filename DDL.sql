@@ -88,7 +88,8 @@ CREATE TABLE Playlist (
 	description TEXT,
 	date_creation DATE NOT NULL DEFAULT CURRENT_DATE,
 	username VARCHAR(32) NOT NULL,
-	CONSTRAINT FK_Playlist_Account FOREIGN KEY (username) REFERENCES Account (username)
+	CONSTRAINT FK_Playlist_Account FOREIGN KEY (username) REFERENCES Account (username),
+	UNIQUE (id, username)
 );
 
 CREATE TABLE Playlist_Song (

@@ -1,5 +1,5 @@
 const { request, response } = require('express')
-const connection = require('./connection')
+const connection = require('../connection')
 
 const getAlbums = (request, response) => {
     connection.pool.query(`SELECT *, (SELECT ARRAY_AGG(ROW_TO_JSON(X)) FROM
@@ -29,7 +29,24 @@ const getAlbum = (request, response) => {
     })
 }
 
+const createAlbum = (request, response) => {
+    const album = request.body.variables.album
+    const artistId = request.user.artist.id
+    connection.pool.query(`INSERT INTO Album(id,name,preview_url,launch_date) 
+    VALUES('${album.id}','${album.name}','${album.preview_url}','${album.launch_date}')`,
+    (error, results) => {
+        if (error) throw error
+        connection.pool.query(`INSERT INTO Album_Artist(album_id,artist_id) 
+        VALUES ('${album.id}','${artistId}')`,
+        (error, results) => {
+            if (error) throw error
+            response.status(201).json({ message: 'Tu album ha sido creado' })
+        })
+    })
+}
+
 module.exports = {
     getAlbums,
     getAlbum,
+    createAlbum,
 }
