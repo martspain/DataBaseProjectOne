@@ -1,0 +1,183 @@
+$midnight-blue: #191970;
+$dark-red: #8b0000;
+$light-green: #8acc28;
+$foreground: black;
+
+@mixin set-margins-to-zero {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+@keyframes change-grad-color{
+    0%{
+        background-position: top left;
+    }
+
+    100%{
+        background-position: bottom right;
+    }
+}
+
+@keyframes change-text-grad{
+    0%{
+        background-position: left;
+    }
+
+    100%{
+        background-position: right;
+    }
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    background: #ddd;
+    background-image: linear-gradient(to top left, $midnight-blue, red, $dark-red, $light-green, $midnight-blue);
+    background-size: 400%;
+    animation: change-grad-color 20s infinite alternate;
+}
+
+.page-container{
+    height: 100%;
+    width: 100%;
+    padding: 3em;
+}
+
+.title-content{
+    background: $foreground;
+    width: 500px;
+    padding: 2em;
+    margin-top: -3%;
+    box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.7;
+}
+
+.title{
+    margin: 0 0 0.5em;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 6rem;
+    color: #ee6352;
+    line-height: 0.8;
+    margin: 0;
+
+    background-image: linear-gradient(to right, $midnight-blue, $dark-red, $light-green, $dark-red, $midnight-blue);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    background-size: 300%;
+    animation: change-text-grad 7s infinite alternate;
+
+}
+
+.option-bar{
+    height: 550px;
+    width: 200px;
+    background-color: $foreground;
+    border-radius: 30px;
+    margin-top: 10px;
+    margin-left: 2%;
+    overflow-y: auto;
+    opacity: 0.7;
+    .playlist-search-bar{
+        width: 125px;
+        margin: 15px;
+        margin-left: 15px;
+        border-radius: 10px;
+    }
+    .playlist-search-img{
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        left: 235px;
+        top: 180px;
+        border-radius: 10px;
+        background-color: white;
+    }
+    .premium-option{
+        height: 100px;
+        width: 180px;
+        margin: 10px;
+        border-radius: 30px;
+        background-color: gold;
+        font-size: 32px;
+        font-style: italic;
+    }
+    .add-playlist-option{
+        background-color: gold;
+        height: 40px;
+        width: 180px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    .playlist{
+        background-color: white;
+        height: auto;
+        width: 180px;
+        margin: 10px;
+        border-radius: 10px;
+    
+        .playlist-name{
+            margin: 5px;
+            text-align: center;
+        }
+    }
+}
+
+.content-container{
+    height: 550px;
+    width: 1000px;
+    background-color: $foreground;
+    opacity: 0.7;
+    border-radius: 30px;
+    position: absolute;
+    bottom:40px;
+    left: 300px;
+    overflow-y: scroll;
+
+    .song-search-bar{
+        margin-top: 15px;
+        margin-left: 50px;
+        border-radius: 10px;
+    }
+
+    .song{
+        margin: 5%;
+        height: 200px;
+        width: 200px;
+        background-color: white;
+        border-radius: 30px;
+        .song-img{
+            height: 100px;
+            width: 100px;
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+        .song-name{
+            color: black;
+            margin-left: 70px;
+            margin-top: 0%;
+        }
+        .song-artist{
+            color:black;
+            margin-left: 65px;
+            margin-top: -10%;
+        }
+    }
+}
+
+
+
+
+
