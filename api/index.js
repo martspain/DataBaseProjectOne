@@ -18,12 +18,19 @@ app.use(
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
 })
+/* Recibe la cuenta en el body como Account */
 app.post('/register', account.postAccount)
-app.post('/login', account.login) // Devuelve el token
+/* Devuelve el token */
+app.post('/login', account.login)
+/* Suscripcion por mes a la cuenta segun token */
 app.post('/subscribe', verifyToken, subscription.subscribe)
+/* Todas las canciones y sus artistas */
 app.get('/songs', verifyToken, song.getSongs)
+/* Todos los albumes con sus artistas y canciones (y artistas de canciones) */
 app.get('/albums', verifyToken, getAlbums)
+/* Album con sus artistas y canciones (y artistas de canciones) */
 app.get('/albums/:id', verifyToken, getAlbum)
+/* Artista y sus albumes */
 app.get('/artists/:id', verifyToken, getArtist)
 
 app.listen(port, () => {
