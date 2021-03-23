@@ -1,23 +1,21 @@
 import Navbar from "./navbar"
-import SCREENS from "./navigation"
 import ReactDOM from "react-dom"
 import React from "react"
+import { BrowserRouter, Route } from "react-router-dom"
+import { SCREENS } from "./navigation"
 
 const htmlRoot = document.getElementById('root')
 
 const Principal = () => {
-  const [screen, setScreen] = React.useState(SCREENS.LOGIN)
-
   return (
-    <div>
-      <Navbar />
-      {screen}
-    </div>
+    <BrowserRouter>
+      <div>
+        <Navbar />
+        <Route exact={true} path="/" component={SCREENS.LOGIN} />
+        <Route path="/home" component={SCREENS.HOME} />
+      </div>
+    </BrowserRouter>
   )
-}
-
-module.exports = {
-  setScreen,
 }
 
 ReactDOM.render(

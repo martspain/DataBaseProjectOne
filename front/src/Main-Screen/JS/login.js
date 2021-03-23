@@ -1,18 +1,16 @@
 import "../SCSS/login.scss";
-import magGlassImg from "../res/searchIcon.png";
-import ReactDOM from "react-dom"
 import React from "react"
-import SCREENS from "./navigation"
-import { setScreen } from "./index"
+import { Link } from "react-router-dom";
 
 const Login = () => {
+
     return (
         <div className="login_box">
 
-            <img className="user" src="../res/letterR.png" alt="img woman" />
+            <img className="user" alt="img woman" />
             <h3>USER LOGIN</h3>
 
-            <form name="loginform" onsubmit="">
+            <form name="loginform">
 
             <p>User Name</p>
             <input type="text" name="username" placeholder="Enter Username" />
@@ -28,7 +26,9 @@ const Login = () => {
 
             </form>
 
-            <button onClick={()=>setScreen(SCREENS.HOME)}>Ir a home (preuba)</button>
+            <Link to="/home">
+                <button>Ir a home (preuba)</button>
+            </Link>
         </div>
     )
 }

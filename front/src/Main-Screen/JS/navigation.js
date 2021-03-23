@@ -1,15 +1,12 @@
 import Login from "./login"
 import Home from "./home"
-
-const [screen, setScreen] = React.useState(SCREENS.LOGIN)
+import React from "react"
 
 const SCREENS = {
     LOGIN: () => (<Login />),
     HOME: () => (<Home />),
 }
 
-module.exports = {
-    screen,
-    setScreen,
+export {
     SCREENS,
 }
