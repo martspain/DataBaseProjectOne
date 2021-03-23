@@ -16,12 +16,17 @@ const Home = () => {
                     <Link to="/home/discover">
                         <button>Discover</button>
                     </Link>
+                    <Link to="/home/createAlbum">
+                        <button>Create Album</button>
+                    </Link>
                     <input className="playlist-search-img" type="image" alt="Search" src={magGlassImg}></input>
                 </div>
             }
             <div className="content-container">
                 <input className="song-search-bar" type="text" placeholder="Buscar cancion..."></input>
                 <input className="song-search-img" type="image" alt="Search" src={magGlassImg}></input>
+                <Route path="/home/discover" component={SCREENS.DISCOVER} />
+                <Route path="/home/createAlbum" component={SCREENS.CREATEALBUM} />
             </div>
         </div>
     )
