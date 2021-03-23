@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { secretPassword } = require('../verificator');
 
 const createAccount = (request, response) => {
-    const data = request.body.variables.account
+    const data = request.body.account
     connection.pool.query(`INSERT INTO Account(username,password,first_name,last_name,email)
     VALUES('${data.username}','${data.password}','${data.first_name}','${data.last_name}','${data.email}')`,
     (error, results) => {
@@ -21,7 +21,6 @@ const createAccount = (request, response) => {
 }
 
 const login = (request, response) => {
-    console.log(request.body)
     const data = request.body.login
     connection.pool.query(`SELECT username,first_name,last_name,email
     FROM Account WHERE username = '${data.username}'`,

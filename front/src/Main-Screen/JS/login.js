@@ -1,6 +1,6 @@
 import "../SCSS/login.scss";
 import React from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "./Services/accountService";
 
 const Login = () => {
@@ -8,6 +8,8 @@ const Login = () => {
         'username': '',
         'password': '',
     })
+    const [message, setMessage] = React.useState('')
+    const history = useHistory()
 
     const handleInputChange = (event) => {
         const target = event.target
@@ -20,15 +22,23 @@ const Login = () => {
     }
 
     const handleSubmit = (event) => {
-        login(account)
+        login(account).then(res => {
+            if (res.message) setMessage(res.message)
+            else {
+                setMessage('')
+                localStorage.setItem('token', res.token)
+                localStorage.setItem('user', JSON.stringify(res.user))
+                history.push('/home')
+            }
+        })
         event.preventDefault();
+
     }
 
     return (
         <div className="login_box">
 
-            <img className="user" alt="img woman" />
-            <h3>USER LOGIN</h3>
+            <h3>LOGIN</h3>
 
             <form name="loginform" onSubmit={handleSubmit}>
 
@@ -51,11 +61,13 @@ const Login = () => {
                 />
                 <br/>
 
-                <div id="errorbox"></div><br/>
+                <p className="errorbox">{message}</p><br/>
 
-                <input type="submit"/><br/><br/>
+                <input type="submit" value="LOGIN"/><br/><br/>
 
-                <a href="">Not registered? <span>Create an account</span></a>
+                <Link to="/signup">
+                    <p className="goSignup">Not registered? <span>Create an account</span></p>
+                </Link>
 
             </form>
 

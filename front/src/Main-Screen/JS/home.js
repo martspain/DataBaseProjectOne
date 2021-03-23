@@ -1,14 +1,13 @@
 //Se importa el estilo
 import "../SCSS/index.scss";
-import magGlassImg from "../res/searchIcon.png";
 import React from "react";
-//import ReactDOM from "react-dom";
+import magGlassImg from "../res/searchIcon.png";
 
-const Home = (name, userType) =>{
+const Home = () => {
     return(
         <div className="page-container">
             <div className="title-content">
-                <h1 class="title">{name}</h1>
+                <h1 className="title">Name</h1>
             </div>
             <div className="option-bar">
                 <input className="playlist-search-bar" type="text" placeholder="Buscar playlist..."></input>
@@ -24,4 +23,4 @@ const Home = (name, userType) =>{
     )
 }
 
-export default Home;
+export default Home

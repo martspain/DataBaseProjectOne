@@ -28,7 +28,7 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 /* Recibe la cuenta en el body como Account */
-app.post('/register', account.createAccount)
+app.post('/signup', account.createAccount)
 /* Devuelve el token */
 app.post('/login', account.login)
 /* Suscripcion por mes a la cuenta segun token */

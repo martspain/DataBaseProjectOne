@@ -30,7 +30,7 @@ const getAlbum = (request, response) => {
 }
 
 const createAlbum = (request, response) => {
-    const album = request.body.variables.album
+    const album = request.body.album
     const artistId = request.user.artist.id
     connection.pool.query(`INSERT INTO Album(id,name,preview_url,launch_date) 
     VALUES('${album.id}','${album.name}','${album.preview_url}','${album.launch_date}')`,

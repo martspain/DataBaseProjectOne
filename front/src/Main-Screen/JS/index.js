@@ -9,11 +9,10 @@ const htmlRoot = document.getElementById('root')
 const Principal = () => {
   return (
     <BrowserRouter>
-      <div>
         <Navbar />
         <Route exact={true} path="/" component={SCREENS.LOGIN} />
         <Route path="/home" component={SCREENS.HOME} />
-      </div>
+        <Route path="/signup" component={SCREENS.SIGNUP}/>
     </BrowserRouter>
   )
 }

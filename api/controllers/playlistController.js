@@ -2,7 +2,7 @@ const { request, response } = require('express')
 const connection = require('../connection')
 
 const createPlaylist = (request, response) => {
-    const playlist = request.body.variables.playlist
+    const playlist = request.body.playlist
     const username = request.user.account.username
     connection.pool.query(`INSERT INTO Playlist(id,name,description,username) 
     VALUES(DEFAULT,'${playlist.name}','${playlist.description}','${username}')

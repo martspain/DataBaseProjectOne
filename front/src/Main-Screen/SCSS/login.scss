@@ -5,45 +5,38 @@ Martin España 19258
 Julio Herrera 19402
 Login/SignUp CSS
 **/
-body{
-	margin:0;
-	padding:0;
-	background: url(../res/ColorFont.jpg) no-repeat center center fixed;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	font-family: sans-serif;
+$green-spofity: #32d055;
+$font-spofity: 'Montserrat', sans-serif;
+$dark-green-spofity: #1f8535;
 
-}
+
 form{
-	border: 1px solid #026640;
-	padding: 30px;
-
+	width: 30%;
+	padding: 25px;
+	margin-top: 25px;
+    box-shadow: 0 0 15px white;
+	p {
+		font-family: $font-spofity;
+		font-weight: 600;
+		color: $dark-green-spofity;
+	}
+	input {
+		font-family: $font-spofity;
+	}
 }
 .login_box, .signup_box{
-	background-color: rgba(0,0,0,0.55);
-	position: absolute;
-	top:50%;
-	left:50%;
-	transform: translate(-50%, -50%);
-	padding-top: -10px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 15px;
-    border-color:#026640;
-    border-width: 100px;
-    color:#ff0000;
-    box-shadow:-10px -10px 9px #17c93d;
-}
-.user{
-	width: 100px;
-	height:100px;
-	position: absolute;
-	top:-100px;
-	left:calc(50% - 50px);
-	
-
+	background-color: white;
+	width: 100%;
+	min-height: calc(100vh - 75px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	h3 {
+        font-family: $font-spofity;
+		font-size: 2em;
+		color: $green-spofity;
+	}
 }
 h3{
 	margin: 0;
@@ -55,49 +48,49 @@ h3{
 }
 
 p{
-	color: #5ee74c;
 	margin: 0;
 	padding:0;
-	font-weight: bold;
 }
-input{
-	width:100%;
-	margin-bottom: 10px;
 
-}
 input[type="text"], input[type="password"], input[type="email"]{
 	border:none;
-	border-bottom: .5px solid #fff;
-	background: transparent; 
+	background-color: rgb(230, 230, 230); 
+	border-radius: 25px;
 	outline:none;
+	padding: 0 25px 0 25px;
+	width: 100%;
+	box-sizing: border-box;
 	height:40px;
-	color:#5ee74c;
-	font-size: 15px;
+	font-size: 1em;
+	margin-top: 5px;
+	margin-bottom: 30px;
 }
 input[type="submit"]{
+	width: 100%;
+	box-sizing: border-box;
+	height:40px;
 	border:none;
 	outline:none;
-	background:#026640;
-	font-size: 20px;
-	color:rgb(63, 231, 41);
-	border-radius: 30px;
+	font-size: 1em;
+	border-radius: 25px;
 	font-weight: bold;
-
+	background-color: $green-spofity;
 }
 input[type="submit"]:hover{
 	cursor:pointer;
-	background:#026640; 
+	background-color:$dark-green-spofity; 
 }
-a{
-	text-decoration: none;
-	color:rgb(78, 219, 12);
-	font-size:15px;
-	line-height:15px;
 
+
+
+.errorbox {
+	color: red;
+	text-align: center;
 }
-a:hover{
-	color:#026640;
-}
-span{
-	font-weight: bold;
+
+.goSignup {
+	text-align: center;
+	span{
+		font-weight: bold;
+	}
 }

@@ -2,7 +2,7 @@ const { request, response } = require('express')
 const connection = require('../connection')
 
 const createManager = (request, response) => {
-    const manager = request.body.variables.manager
+    const manager = request.body.manager
     const username = request.user.account.username
     connection.pool.query(`INSERT INTO Manager(id,username) 
     VALUES ('${manager.id}','${username}')`,

@@ -2,7 +2,7 @@ const { request, response } = require('express')
 const connection = require('../connection')
 
 const search = (request, response) => {
-    const toFind = request.body.variables.toFind
+    const toFind = request.body.toFind
     connection.pool.query(`SELECT ROW_TO_JSON(X) AS found, 'song' AS type FROM (SELECT 
     S.*, ALB.name AS album, ALB.preview_url AS cover,
     (SELECT ARRAY_AGG(ROW_TO_JSON(Y)) AS artists FROM

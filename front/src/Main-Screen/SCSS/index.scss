@@ -1,6 +1,6 @@
-$midnight-blue: #191970;
+$midnight-blue: #7e4dda;
 $dark-red: #8b0000;
-$light-green: #8acc28;
+$light-green: #94ce3d;
 $foreground: black;
 
 @mixin set-margins-to-zero {
@@ -32,14 +32,33 @@ $foreground: black;
 
 body{
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
     color: #333;
     background: #ddd;
-    background-image: linear-gradient(to top left, $midnight-blue, red, $dark-red, $light-green, $midnight-blue);
+    background-image: linear-gradient(to top left, $midnight-blue, $light-green, $midnight-blue);
     background-size: 400%;
     animation: change-grad-color 20s infinite alternate;
+}
+
+.navbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px -5px black;
+    z-index: 1 !important;
+    img {
+        width: 90px;
+    }
+    p {
+        font-family: 'Montserrat', sans-serif;
+        color: black;
+        font-size: 3em;
+        font-weight: 800;
+    }
 }
 
 .page-container{

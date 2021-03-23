@@ -14,7 +14,7 @@ const getSongs = (request, response) => {
 }
 
 const createSong = (request, response) => {
-    const song = request.body.variables.song
+    const song = request.body.song
     const artistId = request.user.artist.id
     connection.pool.query(`INSERT INTO Song(id,name,duration_ms,preview_url,album_id) 
     VALUES ('${song.id}','${song.name}',${song.duration_ms},'${song.preview_url}','${song.album_id}')`,

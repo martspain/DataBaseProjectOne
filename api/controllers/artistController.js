@@ -14,7 +14,7 @@ const getArtist = (request, response) => {
 }
 
 const createArtist = (request, response) => {
-    const artist = request.body.variables.artist
+    const artist = request.body.artist
     const username = request.user.account.username
     connection.pool.query(`INSERT INTO Artist(id,artistic_name,username) 
     VALUES ('${artist.id}','${artist.artistic_name}','${username}')`,
