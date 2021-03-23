@@ -25,8 +25,8 @@ const search = (request, response) => {
     SELECT ROW_TO_JSON(X) AS found, 'playlist' AS type FROM (SELECT * FROM Playlist
     WHERE name ILIKE '%${toFind}%') X`,
     (error, results) => {
-        if (error) throw error
-        response.status(200).json(results.rows)
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
     })
 }
 

@@ -6,8 +6,8 @@ const getAlbums = (request, response) => {
     (SELECT artist_id, artistic_name FROM Album_Artist AA INNER JOIN Artist ART
     ON AA.artist_id = ART.id WHERE AA.album_id = A.id) X) AS artists FROM Album A`,
     (error, results) => {
-        if (error) throw error
-        response.status(200).json(results.rows)
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
     })
 }
 
@@ -24,8 +24,8 @@ const getAlbum = (request, response) => {
     FROM SONG S WHERE S.album_id = A.id) X) AS songs FROM Album A
     WHERE A.id = '${id}'`,
     (error, results) => {
-        if (error) throw error
-        response.status(200).json(results.rows)
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
     })
 }
 
@@ -35,13 +35,18 @@ const createAlbum = (request, response) => {
     connection.pool.query(`INSERT INTO Album(id,name,preview_url,launch_date) 
     VALUES('${album.id}','${album.name}','${album.preview_url}','${album.launch_date}')`,
     (error, results) => {
-        if (error) throw error
-        connection.pool.query(`INSERT INTO Album_Artist(album_id,artist_id) 
-        VALUES ('${album.id}','${artistId}')`,
-        (error, results) => {
-            if (error) throw error
-            response.status(201).json({ message: 'Tu album ha sido creado' })
-        })
+        if (error) response.status(500).json({ message: error.detail })
+        else {
+            album.artists?.forEach(async artistId => {
+                try {
+                    await connection.pool.query(`INSERT INTO Album_Artist(album_id,artist_id) 
+                    VALUES ('${album.id}','${artistId}')`)
+                } catch(error) {
+                    response.status(500).json({ message: error.detail })
+                }
+            })
+            response.status(201).json({ message: 'Album creado' })
+        }
     })
 }
 

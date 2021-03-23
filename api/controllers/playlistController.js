@@ -8,13 +8,15 @@ const createPlaylist = (request, response) => {
     VALUES(DEFAULT,'${playlist.name}','${playlist.description}','${username}')
     RETURNING id`,
     (error, results) => {
-        if (error) throw error
-        connection.pool.query(`INSERT INTO Playlist_Account(playlist_id,username) 
-        VALUES ('${results.rows[0].id}','${username}')`,
-        (error, results) => {
-            if (error) throw error
-            response.status(201).json({ message: 'Tu playlist ha sido creada' })
-        })
+        if (error) response.status(500).json({ message: error.detail })
+        else {
+            connection.pool.query(`INSERT INTO Playlist_Account(playlist_id,username) 
+            VALUES ('${results.rows[0].id}','${username}')`,
+            (error, results) => {
+                if (error) response.status(500).json({ message: error.detail })
+                else response.status(201).json({ message: 'Tu playlist ha sido creada' })
+            })
+        }
     })
 }
 

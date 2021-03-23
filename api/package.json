@@ -7,7 +7,7 @@
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Julio Herrera, Martín España, Fernando Garavito",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.13.10",

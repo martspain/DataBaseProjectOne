@@ -9,8 +9,8 @@ const subscribe = (request, response) => {
     connection.pool.query(`INSERT INTO Subscription(renewal_date, username)
     VALUES ('${renewalDate.getFullYear()}-${renewalDate.getMonth()+1}-${renewalDate.getDate()}','${username}')`,
     (error, results) => {
-        if (error) throw error
-        response.status(201).json({ message: 'Subscription renewed' })
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(201).json({ message: 'Subscription renewed' })
     })
 }
 
