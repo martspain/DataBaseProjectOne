@@ -7,6 +7,7 @@ const SCREENS = {
     LOGIN: () => (<Login />),
     SIGNUP: () => (<Signup />),
     HOME: () => (<Home />),
+    //DISCOVER: () => (<Discover />),
 }
 
 export {

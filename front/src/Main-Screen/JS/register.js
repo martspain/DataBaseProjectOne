@@ -43,6 +43,8 @@ const Signup = () => {
             const blank = /^\s*$/g;
             if ([account.username, account.password, account.first_name, account.email].some(e => blank.test(e))) {
                 setResMessage('Completa todos los campos')
+            } else if (account.username.includes(' ')) {
+                setResMessage('Tu nombre de usuario no puede contener espacios en blanco')
             } else {
                 setResMessage('')
                 signup(account).then(res => {

@@ -11,8 +11,10 @@ const Principal = () => {
     <BrowserRouter>
         <Navbar />
         <Route exact={true} path="/" component={SCREENS.LOGIN} />
-        <Route path="/home" component={SCREENS.HOME} />
         <Route path="/signup" component={SCREENS.SIGNUP}/>
+        {localStorage.getItem('token') && (
+          <Route path="/home" component={SCREENS.HOME} />
+        )}
     </BrowserRouter>
   )
 }
