@@ -24,6 +24,16 @@ module.exports = {
 				options: {
 				  outputPath: 'images',
 				}
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                    presets: ['@babel/preset-react']
+                    }
+                }
             }
         ]
     }

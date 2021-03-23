@@ -1,0 +1,103 @@
+/**Universidad del Valle de Guatemala
+Bases de Datos
+Fernando Garavito 18071
+Martin España 19258
+Julio Herrera 19402
+Login/SignUp CSS
+**/
+body{
+	margin:0;
+	padding:0;
+	background: url(../res/ColorFont.jpg) no-repeat center center fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	font-family: sans-serif;
+
+}
+form{
+	border: 1px solid #026640;
+	padding: 30px;
+
+}
+.login_box, .signup_box{
+	background-color: rgba(0,0,0,0.55);
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	padding-top: -10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#026640;
+    border-width: 100px;
+    color:#ff0000;
+    box-shadow:-10px -10px 9px #17c93d;
+}
+.user{
+	width: 100px;
+	height:100px;
+	position: absolute;
+	top:-100px;
+	left:calc(50% - 50px);
+	
+
+}
+h3{
+	margin: 0;
+	padding: 50px 0 20px;
+	font-size:15px;
+	color:#5ee74c;
+	text-align: center;
+
+}
+
+p{
+	color: #5ee74c;
+	margin: 0;
+	padding:0;
+	font-weight: bold;
+}
+input{
+	width:100%;
+	margin-bottom: 10px;
+
+}
+input[type="text"], input[type="password"], input[type="email"]{
+	border:none;
+	border-bottom: .5px solid #fff;
+	background: transparent; 
+	outline:none;
+	height:40px;
+	color:#5ee74c;
+	font-size: 15px;
+}
+input[type="submit"]{
+	border:none;
+	outline:none;
+	background:#026640;
+	font-size: 20px;
+	color:rgb(63, 231, 41);
+	border-radius: 30px;
+	font-weight: bold;
+
+}
+input[type="submit"]:hover{
+	cursor:pointer;
+	background:#026640; 
+}
+a{
+	text-decoration: none;
+	color:rgb(78, 219, 12);
+	font-size:15px;
+	line-height:15px;
+
+}
+a:hover{
+	color:#026640;
+}
+span{
+	font-weight: bold;
+}
