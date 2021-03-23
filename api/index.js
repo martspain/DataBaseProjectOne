@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const cors = require('cors')
 const account = require('./controllers/accountController')
 const { getAlbums, getAlbum, createAlbum } = require('./controllers/albumController')
 const { getArtist, createArtist } = require('./controllers/artistController')
@@ -11,7 +12,12 @@ const song = require('./controllers/songController')
 const subscription = require('./controllers/subscriptionController')
 const { verifyToken, verifyArtist, verifySubscription } = require('./verificator')
 
+const corsOptions = {
+    origin: 'http://localhost:8080'
+}
+
 app.use(express.json())
+app.use(cors(corsOptions))
 app.use(
     express.urlencoded({
         extended: true,

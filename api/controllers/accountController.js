@@ -21,7 +21,8 @@ const createAccount = (request, response) => {
 }
 
 const login = (request, response) => {
-    const data = request.body.variables.login
+    console.log(request.body)
+    const data = request.body.login
     connection.pool.query(`SELECT username,first_name,last_name,email
     FROM Account WHERE username = '${data.username}'`,
     (error, results) => {
