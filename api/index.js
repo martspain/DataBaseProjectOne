@@ -10,7 +10,8 @@ const { createPlaylist } = require('./controllers/playlistController')
 const { search } = require('./controllers/searchController')
 const song = require('./controllers/songController')
 const subscription = require('./controllers/subscriptionController')
-const { verifyToken, verifyArtist, verifySubscription } = require('./verificator')
+const { verifyToken, verifyArtist, verifySubscription, verifyManager } = require('./verificator')
+const { recentAlbums, popularArtists, subscriptionCount, largestProductionArtists, popularGenres, activeAccounts } = require('./controllers/statisticsController')
 
 const corsOptions = {
     origin: 'http://localhost:8080'
@@ -53,6 +54,18 @@ app.get('/search', verifyToken, search)
 app.post('/playlists', verifyToken, verifySubscription, createPlaylist)
 /* Crea un manager para el usuario logeado */
 app.post('/manager', verifyToken, createManager)
+/* Obtener álbumes más recientes de la ultima semana */
+app.get('/statistics/recentAlbums', verifyToken, verifyManager, recentAlbums)
+/* Artistas con popularidad creciente en los ultimos 3 meses */
+app.get('/statistics/popularArtists', verifyToken, verifyManager, popularArtists)
+/* Cantidad de nuevas subscripciones mensuales durante los ultimos 6 meses */
+app.get('/statistics/subscriptionCount', verifyToken, verifyManager, subscriptionCount)
+/* Artistas con mayor produccion musical */
+app.get('/statistics/largestProductionArtists', verifyToken, verifyManager, largestProductionArtists)
+/* Generos más populares */
+app.get('/statistics/popularGenres', verifyToken, verifyManager, popularGenres)
+/* Usuarios más activos en la plataforma */
+app.get('/statistics/activeAccounts', verifyToken, verifyManager, activeAccounts)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

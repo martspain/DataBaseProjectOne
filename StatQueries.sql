@@ -1,32 +1,26 @@
 
 --Query para obtener álbumes más recientes de la ultima semana
-SELECT name
+SELECT *
 FROM Album
-WHERE EXTRACT(MONTH FROM launch_date) = EXTRACT(MONTH FROM CURRENT_DATE)
-AND EXTRACT(DAY FROM launch_date) >= (EXTRACT(DAY FROM CURRENT_DATE) - 7)
+WHERE launch_date <= CURRENT_DATE AND launch_date >= (CURRENT_DATE - INTERVAL '1 week');
 
 
 --Query para artistas con popularidad creciente en los ultimos 3 meses
-
+SELECT * FROM Reproduction
+WHERE rep_date >= (CURRENT_DATE - INTERVAL '3 months')
 
 --Query para cantidad de nuevas subscripciones mensuales durante los ultimos 6 meses
-SELECT COUNT(*) AS subscripciones_por_mes
-FROM Subscription S1
-WHERE EXTRACT(MONTH FROM S1.start_date) = EXTRACT(MONTH FROM CURRENT_DATE)
-OR EXTRACT(MONTH FROM S1.start_date) = (EXTRACT(MONTH FROM CURRENT_DATE) - 1)
-OR EXTRACT(MONTH FROM S1.start_date) = (EXTRACT(MONTH FROM CURRENT_DATE) - 2)
-OR EXTRACT(MONTH FROM S1.start_date) = (EXTRACT(MONTH FROM CURRENT_DATE) - 3)
-OR EXTRACT(MONTH FROM S1.start_date) = (EXTRACT(MONTH FROM CURRENT_DATE) - 4)
-OR EXTRACT(MONTH FROM S1.start_date) = (EXTRACT(MONTH FROM CURRENT_DATE) - 5)
-OR EXTRACT(MONTH FROM S1.start_date) = (EXTRACT(MONTH FROM CURRENT_DATE) - 6)
+SELECT start_date_a_mes, COUNT(*) AS cantidad FROM (
+	SELECT DATE_TRUNC('month', start_date) AS start_date_a_mes
+	FROM Subscription
+		WHERE start_date <= CURRENT_DATE AND start_date >= (CURRENT_DATE - INTERVAL '6 months')) A
+			GROUP BY start_date_a_mes;
 
 --Query para artistas con mayor produccion musical
-SELECT A1.artistic_name, COUNT(*) AS canciones_por_artista
-FROM song_artist S1 JOIN Artist A1
-ON S1.artist_id = A1.id
-GROUP BY S1.artistic_name
-ORDER BY canciones_por_artista DESC
-LIMIT 10
+SELECT id,artistic_name,canciones_por_artista FROM (SELECT artist_id, COUNT(*) AS canciones_por_artista
+	FROM song_artist GROUP BY artist_id) X
+	INNER JOIN Artist A ON X.artist_id = A.id
+		ORDER BY canciones_por_artista DESC LIMIT 10;
 
 --Query para generos más populares
 SELECT G1.name, COUNT(*) AS rep_por_genero
@@ -38,11 +32,9 @@ LIMIT 10
 
 --Query para usuarios más activos en la plataforma
 
-SELECT A1.username, COUNT(*) AS rep_por_usuario
-FROM Account A1 JOIN Reproduction R1
-ON A1.username = R1.username
-GROUP BY A1.username
-ORDER BY rep_por_usuario DESC
-LIMIT 10
-
+SELECT X.username, A.first_name, cantidad_reproducciones
+FROM (SELECT username, COUNT(*) AS cantidad_reproducciones FROM Reproduction
+	  WHERE rep_date >= (CURRENT_DATE - INTERVAL '1 month') GROUP BY username) X
+INNER JOIN Account A ON X.username = A.username
+ORDER BY cantidad_reproducciones DESC LIMIT 10
 
