@@ -12,6 +12,7 @@ const song = require('./controllers/songController')
 const subscription = require('./controllers/subscriptionController')
 const { verifyToken, verifyArtist, verifySubscription, verifyManager } = require('./verificator')
 const { recentAlbums, popularArtists, subscriptionCount, largestProductionArtists, popularGenres, activeAccounts } = require('./controllers/statisticsController')
+const { createReproduction } = require('./controllers/reproductionController')
 
 const corsOptions = {
     origin: 'http://localhost:8080'
@@ -70,6 +71,8 @@ app.get('/statistics/mostActiveAccounts', verifyToken, verifyManager, activeAcco
 app.put('/songs/changeActive', verifyToken, verifyManager, song.changeActiveSong)
 /* Obtener playlists de un usuario especifico*/
 app.get('/playlists/:id', verifyToken, verifySubscription, getPlaylists) 
+/* Crea una reproduccion de una cancion por un usuario */
+app.post('/reproduction/:id', verifyToken, createReproduction)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

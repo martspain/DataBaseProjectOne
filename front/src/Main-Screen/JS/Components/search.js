@@ -16,20 +16,45 @@ const Search = (props) =>{
     }, [props.toFind])
 
     return(
-        <div>
+        <div className="search">
             {
                 data.map(result => {
                     switch (result.type) {
                         case 'song':
-                            return (<Song song={result.found} />)
+                            return (
+                                <div>
+                                    <p>Song</p>
+                                    <Song song={result.found} />
+                                </div>
+                            )
                         case 'artist':
-                            return (<Artist artist={result.found} />)
+                            return (
+                                <div>
+                                    <p>Artist</p>
+                                    <Artist artist={result.found} />
+                                </div>
+                            )
                         case 'album':
-                            return (<Album album={result.found} />)
+                            return (
+                                <div>
+                                    <p>Album</p>
+                                    <Album album={result.found} />
+                                </div>
+                            )
                         case 'genre':
-                            return (<Genre genre={result.found} />)
+                            return (
+                                <div>
+                                    <p>Genre</p>
+                                    <Genre genre={result.found} />
+                                </div>
+                            )
                         case 'playlist':
-                            return (<Playlist playlist={result.found} />)
+                            return (
+                                <div>
+                                    <p>Playlist</p>
+                                    <Playlist playlist={result.found} />
+                                </div>
+                            )
                     }
                 })
             }

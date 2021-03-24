@@ -3,14 +3,6 @@ function getManagerStats(){
     /* TODO */ 
 }
 
-function becomePremium(){
-    //Se da feedback al usuario que su solcitud sera procesada
-    alert("Su solicitud será procesada. Tomará un día actualizar su cuenta a la versión premium. Gracias por usar Sofity!");
-    
-    //Se añade la subscripcion al api
-    /* TODO */
-}
-
 function addPlaylist(){
     let playlistName = prompt("Por favor ingrese el nombre de la playlist: ", "Mi playlist.");
     if (playlistName !== "" && playlistName !== null) {
@@ -47,7 +39,6 @@ function launchAlbum(){
 
 export {
     getManagerStats,
-    becomePremium,
     addPlaylist,
     getPlaylists,
     launchAlbum,

@@ -8,7 +8,7 @@ const millisToMinutesAndSeconds = (millis) => {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-const Song = (props) =>{
+const SimpleSong = (props) =>{
     const [actualTrack, setActualTrack] = React.useState('')
 
     React.useEffect(() => {
@@ -16,16 +16,14 @@ const Song = (props) =>{
     }, [actualTrack])
 
     return(
-        <div className="song">
-            <div>
-                <button onClick={() => setTrack(props.song.id)} value="play">
+        <div className="simple-song">
+            <div className="simple-play-song" onClick={() => setTrack(props.song.id)}>
+                <button value="play">
                     <div className={(actualTrack===props.song.id) && "playing"} />
                 </button>
-                <img src={props.song.cover} />
+                <h3 className={(actualTrack===props.song.id) && "playing-title"}>{props.song.name}</h3>
             </div>
-            <h3>{props.song.name}</h3>
-            <p>{millisToMinutesAndSeconds(props.song.duration_ms)}</p>
-            <div>
+            <div className="simple-song-artists">
             {
                 props.song.artists?.map(artist => {
                     return(
@@ -36,11 +34,9 @@ const Song = (props) =>{
                 })
             }
             </div>
-            <Link to={"/home/album/"+props.song.album_id}>
-                <h4>{props.song.album}</h4>
-            </Link>
+            <p>{millisToMinutesAndSeconds(props.song.duration_ms)}</p>
         </div>
     )
 }
 
-export default Song;
+export default SimpleSong;

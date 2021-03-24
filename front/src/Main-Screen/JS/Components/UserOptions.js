@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { becomePremium, addPlaylist, getPlaylists, getManagerStats, launchAlbum } from "../utils"
-import Playlist from "./playlists";
-import { actualTrackObs, getTrack } from "../Services/track"
+import { Link, useHistory } from "react-router-dom";
+import { becomePremium, launchAlbum } from "../utils"
+import { actualTrackObs } from "../Services/track"
 
 const UserOptions = () => {
     const [sectionSelected, setSectionSelected] = React.useState('Discover')
     const [track, setTrack] = React.useState('')
+    const history = useHistory()
 
     React.useEffect(() => {
         actualTrackObs.subscribe(actual => setTrack(actual))
@@ -17,9 +17,25 @@ const UserOptions = () => {
             {!(JSON.parse(localStorage.getItem('user'))?.subscription) &&
                 <div
                     className="premium-button"
-                    onClick={() => becomePremium()}
+                    onClick={() => history.push("/home/become/premium")}
                 >
                     <p>Become Premium!</p>
+                </div>
+            }
+            {!(JSON.parse(localStorage.getItem('user'))?.artist) &&
+                <div
+                    className="premium-button"
+                    onClick={() => history.push("/home/become/artist")}
+                >
+                    <p>Become Artist!</p>
+                </div>
+            }
+            {!(JSON.parse(localStorage.getItem('user'))?.manager) &&
+                <div
+                    className="premium-button"
+                    onClick={() => history.push("/home/become/manager")}
+                >
+                    <p>Become Manager!</p>
                 </div>
             }
             <Link to="/home/discover">
@@ -59,7 +75,7 @@ const UserOptions = () => {
                 src={`https://open.spotify.com/embed/track/${track}`}
                 width="300"
                 height="80"
-                frameborder="0"
+                frameBorder="0"
                 allowtransparency="true"
                 allow="encrypted-media"
             />

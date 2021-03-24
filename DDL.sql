@@ -23,7 +23,7 @@ CREATE TABLE Manager (
 CREATE TABLE Artist (
 	id VARCHAR(50) PRIMARY KEY,
 	artistic_name VARCHAR(50) NOT NULL,
-	username VARCHAR(32) NOT NULL,
+	username VARCHAR(32) NOT NULL UNIQUE,
 	CONSTRAINT FK_Artist_Account FOREIGN KEY (username) REFERENCES Account (username)
 );
 

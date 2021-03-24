@@ -25,7 +25,7 @@ const getAlbum = (request, response) => {
     WHERE A.id = '${id}'`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
-        else response.status(200).json(results.rows)
+        else response.status(200).json(results.rows[0])
     })
 }
 
