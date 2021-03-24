@@ -6,6 +6,7 @@ import Discover from "./Components/discover"
 import CreateAlbum from "./Components/createAlbum"
 import Playlists from "./Components/playlists"
 import Statistics from "./Components/statistics"
+import Search from "./Components/search"
 
 const SCREENS = {
     LOGIN: () => (<Login />),
@@ -14,7 +15,8 @@ const SCREENS = {
     DISCOVER: () => (<Discover />),
     CREATEALBUM: () => (<CreateAlbum />),
     PLAYLISTS: () => (<Playlists />),
-    STATISTICS: () => (<Statistics />)
+    STATISTICS: () => (<Statistics />),
+    SEARCH: (toFind) => (<Search toFind={toFind} />)
 }
 
 export {

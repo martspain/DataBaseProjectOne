@@ -14,7 +14,7 @@ const search = (request, response) => {
     WHERE artistic_name ILIKE '%${toFind}%') X 
     UNION ALL
     SELECT ROW_TO_JSON(X) AS found, 'album' AS type FROM (SELECT *,
-    (SELECT ARRAY_AGG(ROW_TO_JSON(Y)) FROM
+    (SELECT ARRAY_AGG(ROW_TO_JSON(Y)) AS artists FROM
     (SELECT artist_id, artistic_name FROM Album_Artist AA INNER JOIN Artist ART
     ON AA.artist_id = ART.id WHERE AA.album_id = A.id) Y) FROM Album A
     WHERE name ILIKE '%${toFind}%') X 

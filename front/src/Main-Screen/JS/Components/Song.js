@@ -1,13 +1,11 @@
 import React from "react";
-//import ReactDOM from "react-dom";
-import songImg from "../res/musicIcon";
+import { setTrack } from "../Services/track";
 
-const Song = (name, artist) =>{
+const Song = (props) =>{
     return(
         <div className="song">
-            <img className="song-img" src={songImg} alt="Ups! No se encontró la imagen :("></img>
-            <h1 className="song-name">{name}</h1>
-            <h2 className="song-artist">{artist}</h2>
+            <p>{JSON.stringify(props.song)}</p>
+            <button onClick={() => setTrack(props.song.id)} value="play" />
         </div>
     )
 }

@@ -49,7 +49,7 @@ app.post('/artists', verifyToken, createArtist)
 /* Artista y sus albumes */
 app.get('/artists/:id', verifyToken, getArtist)
 /* Busca por nombre de cancion, nombre de artista, nombre de album y genero */
-app.get('/search', verifyToken, search)
+app.post('/search', verifyToken, search)
 /* Crea una playlist del usuario */
 app.post('/playlists', verifyToken, verifySubscription, createPlaylist)
 /* Crea un manager para el usuario logeado */

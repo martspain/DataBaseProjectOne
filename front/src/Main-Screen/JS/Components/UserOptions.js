@@ -2,9 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { becomePremium, addPlaylist, getPlaylists, getManagerStats, launchAlbum } from "../utils"
 import Playlist from "./playlists";
+import { actualTrackObs, getTrack } from "../Services/track"
 
 const UserOptions = () => {
     const [sectionSelected, setSectionSelected] = React.useState('Discover')
+    const [track, setTrack] = React.useState('')
+
+    React.useEffect(() => {
+        actualTrackObs.subscribe(actual => setTrack(actual))
+    }, [track])
+
     return (
         <div className="user-options">
             {!(JSON.parse(localStorage.getItem('user'))?.subscription) &&
@@ -46,6 +53,16 @@ const UserOptions = () => {
                     <button className="launch-album-option" onClick={() => launchAlbum()}>Create Album</button>
                 </div>
             }
+            
+            <iframe
+                className="reproductor"
+                src={`https://open.spotify.com/embed/track/${track}`}
+                width="300"
+                height="80"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+            />
         </div>
     )
 }
