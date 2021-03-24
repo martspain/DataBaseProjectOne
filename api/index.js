@@ -65,7 +65,7 @@ app.get('/statistics/largestProductionArtists', verifyToken, verifyManager, larg
 /* Generos más populares */
 app.get('/statistics/popularGenres', verifyToken, verifyManager, popularGenres)
 /* Usuarios más activos en la plataforma */
-app.get('/statistics/activeAccounts', verifyToken, verifyManager, activeAccounts)
+app.get('/statistics/mostActiveAccounts', verifyToken, verifyManager, activeAccounts)
 /* Cambia el estado boolean de active para una cancion especifica */
 app.put('/songs/changeActive', verifyToken, verifyManager, song.changeActiveSong)
 

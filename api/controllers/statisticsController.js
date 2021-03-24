@@ -2,7 +2,9 @@ const { request, response } = require('express')
 const connection = require('../connection')
 
 const recentAlbums = (request, response) => {
-    connection.pool.query(`SELECT * FROM Album
+    connection.pool.query(`SELECT *, (SELECT ARRAY_AGG(ROW_TO_JSON(X)) FROM
+    (SELECT artist_id, artistic_name FROM Album_Artist AA INNER JOIN Artist ART
+    ON AA.artist_id = ART.id WHERE AA.album_id = A.id) X) AS artists FROM Album A
     WHERE launch_date <= CURRENT_DATE AND launch_date >= (CURRENT_DATE - INTERVAL '1 week')`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
@@ -10,9 +12,15 @@ const recentAlbums = (request, response) => {
     })
 }
 
-/* TODO: Hacer query */
 const popularArtists = (request, response) => {
-    response.status(200).json({message:'mostrar artistas populares'})
+    connection.pool.query(`SELECT * FROM Artist A INNER JOIN
+    (SELECT SA.artist_id, COUNT(R.id) AS rep_por_artista FROM Reproduction R
+    INNER JOIN Song_Artist SA ON R.song_id = SA.song_id
+    GROUP BY SA.artist_id) B ON A.id = B.artist_id ORDER BY rep_por_artista DESC LIMIT 10`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
 }
 
 const subscriptionCount = (request, response) => {
@@ -20,7 +28,7 @@ const subscriptionCount = (request, response) => {
     SELECT DATE_TRUNC('month', start_date) AS start_date_a_mes
     FROM Subscription
     WHERE start_date <= CURRENT_DATE AND start_date >= (CURRENT_DATE - INTERVAL '6 months')) A
-    GROUP BY start_date_a_mes`,
+    GROUP BY start_date_a_mes ORDER BY start_date_a_mes DESC`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
         else response.status(200).json(results.rows)
@@ -39,11 +47,11 @@ const largestProductionArtists = (request, response) => {
     })
 }
 
-/* TODO: cambiar por reproducciones */
 const popularGenres = (request, response) => {
-    connection.pool.query(`SELECT G1.name, COUNT(*) AS rep_por_genero
-    FROM Song_Genre S1 JOIN Genre G1 ON S1.genre_id = G1.id
-    GROUP BY S1.genre_id, G1.name ORDER BY rep_por_genero DESC LIMIT 10`,
+    connection.pool.query(`SELECT G.id, G.name, COUNT(R.id) AS rep_por_genero
+    FROM Reproduction R INNER JOIN Song_Genre SG ON R.song_id = SG.song_id
+	INNER JOIN Genre G ON SG.genre_id = G.id
+    GROUP BY G.id, G.name ORDER BY rep_por_genero DESC LIMIT 5`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
         else response.status(200).json(results.rows)
