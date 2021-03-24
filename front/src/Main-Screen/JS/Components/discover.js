@@ -13,12 +13,9 @@ const Discover = () =>{
         <div className="discover-grid">
             <h1>Discover Music</h1>
             <div>
-            {
-                data.map((album) => 
-                        <Album key={album.id} album={album} />
-                    
-                )
-            }
+            {data?.map((album) => 
+                <Album album={album} />
+            )}
             </div>
         </div>
     )
