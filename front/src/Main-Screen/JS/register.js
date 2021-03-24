@@ -57,7 +57,7 @@ const Signup = () => {
                                 setMessage('')
                                 localStorage.setItem('token', res.token)
                                 localStorage.setItem('user', JSON.stringify(res.user))
-                                history.push('/home')
+                                history.push('/home/discover')
                             }
                         })
                     }

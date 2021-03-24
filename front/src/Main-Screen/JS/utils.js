@@ -1,9 +1,9 @@
-export default function getManagerStats(){
+function getManagerStats(){
     //Se obtienen las estadisticas y se despliega la informacion en un nuevo div
     /* TODO */ 
 }
 
-export default function becomePremium(){
+function becomePremium(){
     //Se da feedback al usuario que su solcitud sera procesada
     alert("Su solicitud será procesada. Tomará un día actualizar su cuenta a la versión premium. Gracias por usar Sofity!");
     
@@ -11,7 +11,7 @@ export default function becomePremium(){
     /* TODO */
 }
 
-export default function addPlaylist(){
+function addPlaylist(){
     let playlistName = prompt("Por favor ingrese el nombre de la playlist: ", "Mi playlist.");
     if (playlistName !== "" && playlistName !== null) {
         createPlaylist(father, playlistName);
@@ -25,7 +25,7 @@ export default function addPlaylist(){
     /* TODO */
 }
 
-export default function getPlaylists(){
+function getPlaylists(){
     //Se obtienen las playlist del usuario
     /* TODO */
     
@@ -37,7 +37,15 @@ export default function getPlaylists(){
     */
 }
 
-export default function launchAlbum(){
+function launchAlbum(){
     //Se solicita la info del album al usuario y se añade a la base de datos 
     /* TODO */
+}
+
+export {
+    getManagerStats,
+    becomePremium,
+    addPlaylist,
+    getPlaylists,
+    launchAlbum,
 }

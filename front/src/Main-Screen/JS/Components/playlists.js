@@ -1,12 +1,12 @@
 import React from "react";
 //import ReactDOM from "react-dom";
 
-const Playlist = (name) =>{
+const Playlists = () =>{
     return(
         <div className="playlist">
-            <h1 className="playlist-name">{name}</h1>
+            <h1 className="playlist-name">Playlists</h1>
         </div>
     )
 }
 
-export default Playlist;
+export default Playlists;

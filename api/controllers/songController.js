@@ -34,7 +34,18 @@ const createSong = (request, response) => {
     })
 }
 
+const changeActiveSong = (request, response) => {
+    const id = request.params.id
+    connection.pool.query(`UPDATE Song SET active = NOT active
+    WHERE id = '${id}'`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows[0])
+    })
+}
+
 module.exports = {
     getSongs,
     createSong,
+    changeActiveSong,
 }

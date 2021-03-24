@@ -28,7 +28,7 @@ const Login = () => {
                 setMessage('')
                 localStorage.setItem('token', res.token)
                 localStorage.setItem('user', JSON.stringify(res.user))
-                history.push('/home')
+                history.push('/home/discover')
             }
         })
         event.preventDefault();
@@ -71,7 +71,7 @@ const Login = () => {
 
             </form>
 
-            <Link to="/home">
+            <Link to="/home/discover">
                 <button>Ir a home (preuba)</button>
             </Link>
         </div>
