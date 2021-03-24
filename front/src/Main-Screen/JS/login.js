@@ -26,6 +26,8 @@ const Login = () => {
             if (res.message) setMessage(res.message)
             else {
                 setMessage('')
+                localStorage.removeItem('token')
+                localStorage.removeItem('user')
                 localStorage.setItem('token', res.token)
                 localStorage.setItem('user', JSON.stringify(res.user))
                 history.push('/home/discover')
