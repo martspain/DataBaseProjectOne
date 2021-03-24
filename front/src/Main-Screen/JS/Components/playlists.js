@@ -9,17 +9,15 @@ const Playlists = () =>{
         getPlaylists().then(res => setData(res))
     }, [])
     return(
-        <div className="playlist">
-            <h1 className="playlist-name">Playlist</h1>
-            {data.map(Playlist => {
-                return(
-                    <div>
-                        <Link to={"/home/playlist/" + Playlist.id}>
-                            <p>{Playlist.name}</p>
-                        </Link>
-                    </div>
-                )
-            })}
+        <div>
+            {data?.map((Play) => 
+                <div key={Play.id} className="playlist">
+                    <Link to={"/home/playlist/" + Play.id}>
+                        <h3>{Play.name}</h3>
+                        <p>{`Creada por: ${Play.username}`}</p>
+                    </Link>
+                </div>  
+            )}
         </div>
     )
 }

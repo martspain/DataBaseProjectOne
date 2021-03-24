@@ -14,11 +14,10 @@ const Discover = () =>{
             <h1>Discover Music</h1>
             <div>
             {
-                data.map(album => {
-                    return (
-                        <Album album={album} />
-                    )
-                })
+                data.map((album) => 
+                        <Album key={album.id} album={album} />
+                    
+                )
             }
             </div>
         </div>
