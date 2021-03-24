@@ -5,11 +5,11 @@ const headers = {
     ...(localStorage.getItem('token')) && { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 }
 
-const login = async (login) => {
+const login = async (logan) => {
     const response = await fetch(URL + '/login', {
         method: 'POST',
         headers,
-        body: JSON.stringify({ login })
+        body: JSON.stringify({ logan })
     })
     try {
         const data = await response.json()
