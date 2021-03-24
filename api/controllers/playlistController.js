@@ -20,6 +20,17 @@ const createPlaylist = (request, response) => {
     })
 }
 
+const getPlaylists = (request, response) => {
+    const username = request.params.id
+    connection.pool.query(`SELECT * FROM Playlist_Account JOIN Playlist ON Playlist.id = 
+    Playlist_Account.playlist_id WHERE Playlist_Account.username = '${username}'`
+    ,(error,results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     createPlaylist,
+    getPlaylists
 }
