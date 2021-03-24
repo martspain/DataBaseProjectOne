@@ -40,6 +40,9 @@ function getPlaylists(){
 function launchAlbum(){
     //Se solicita la info del album al usuario y se añade a la base de datos 
     /* TODO */
+
+    alert(localStorage.getItem('body'));
+
 }
 
 export {

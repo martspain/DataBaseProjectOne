@@ -6,7 +6,7 @@ const account = require('./controllers/accountController')
 const { getAlbums, getAlbum, createAlbum } = require('./controllers/albumController')
 const { getArtist, createArtist } = require('./controllers/artistController')
 const { createManager } = require('./controllers/managerController')
-const { createPlaylist } = require('./controllers/playlistController')
+const { createPlaylist, getPlaylists } = require('./controllers/playlistController')
 const { search } = require('./controllers/searchController')
 const song = require('./controllers/songController')
 const subscription = require('./controllers/subscriptionController')
@@ -68,6 +68,8 @@ app.get('/statistics/popularGenres', verifyToken, verifyManager, popularGenres)
 app.get('/statistics/mostActiveAccounts', verifyToken, verifyManager, activeAccounts)
 /* Cambia el estado boolean de active para una cancion especifica */
 app.put('/songs/changeActive', verifyToken, verifyManager, song.changeActiveSong)
+/* Obtener playlists de un usuario especifico*/
+app.get('/playlists/:id', verifyToken, verifySubscription, getPlaylists) 
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
