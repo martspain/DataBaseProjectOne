@@ -64,11 +64,6 @@ const UserOptions = () => {
                     </div>
                 </Link>
             }
-            {(JSON.parse(localStorage.getItem('user'))?.artist) &&
-                <div>
-                    <button className="launch-album-option" onClick={() => launchAlbum()}>Create Album</button>
-                </div>
-            }
             
             <iframe
                 className="reproductor"
