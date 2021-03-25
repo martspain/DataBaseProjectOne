@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    devServer : {
+        historyApiFallback: true,
+    },
     entry: './src/Main-Screen/JS/index.js',
     output: {
         filename: '[name].bundle.js',

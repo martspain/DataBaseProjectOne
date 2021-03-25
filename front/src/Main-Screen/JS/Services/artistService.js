@@ -16,6 +16,19 @@ const becomeArtist = async (artist) => {
     }
 }
 
+const getArtist = async (id) => {
+    const response = await fetch(NURL + '/' + id, {
+        headers,
+    })
+    try {
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     becomeArtist,
+    getArtist,
 }

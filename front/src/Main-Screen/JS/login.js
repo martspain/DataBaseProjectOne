@@ -72,10 +72,6 @@ const Login = () => {
                 </Link>
 
             </form>
-
-            <Link to="/home/discover">
-                <button>Ir a home (preuba)</button>
-            </Link>
         </div>
     )
 }

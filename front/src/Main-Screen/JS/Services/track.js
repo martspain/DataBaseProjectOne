@@ -12,8 +12,20 @@ let actualTrack = new Track('')
 const createReproduction = async (id) => {
     const response = await fetch(URL + '/reproduction/' + id, {
         method: 'POST',
-        headers
+        headers,
     }).catch(error => console.log(error))
+}
+
+const accountReproductions = async () => {
+    const response = await fetch(URL + '/reproduction/accountReproductions', {
+        headers,
+    })
+    try {
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const getTrack = () => {
@@ -22,8 +34,19 @@ const getTrack = () => {
 
 const setTrack = (id) => {
     if (id !== getTrack()) {
-        actualTrack = new Track(id)
-        createReproduction(id)
+        if ((JSON.parse(localStorage.getItem('user')).subscription)) {
+            actualTrack = new Track(id)
+            createReproduction(id)
+        } else {
+            accountReproductions().then(res => {
+                if (res[0].count < 3) {
+                    actualTrack = new Track(id)
+                    createReproduction(id)
+                } else {
+                    alert('You reached the limit of free reproductions')
+                }
+            })
+        }
     }
 }
 

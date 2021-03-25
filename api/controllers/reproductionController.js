@@ -12,6 +12,17 @@ const createReproduction = (request, response) => {
     })
 }
 
+const accountReproductions = (request, response) => {
+    const username = request.user.account.username
+    connection.pool.query(`SELECT COUNT(*) FROM Reproduction
+    WHERE username = '${username}'`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     createReproduction,
+    accountReproductions,
 }

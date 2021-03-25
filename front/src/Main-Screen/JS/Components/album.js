@@ -10,7 +10,7 @@ const Album = (props) => {
             </Link>
             <div>
             {
-                props.album.artists.map((artist) =>
+                props.album.artists?.map((artist) =>
                     <Link key={artist.artist_id} to={"/home/artist/" + artist.artist_id}>
                         <p>{artist.artistic_name+", "}</p>
                     </Link>

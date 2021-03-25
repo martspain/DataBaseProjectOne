@@ -12,6 +12,11 @@ const UserOptions = () => {
         actualTrackObs.subscribe(actual => setTrack(actual))
     }, [track])
 
+    const logout = () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+    }
+
     return (
         <div className="user-options">
             {!(JSON.parse(localStorage.getItem('user'))?.subscription) &&
@@ -64,6 +69,14 @@ const UserOptions = () => {
                     </div>
                 </Link>
             }
+            <Link to="/">
+                <div
+                    className="section-selector"
+                    onClick={() => logout()}
+                >
+                    <p>Logout</p>
+                </div>
+            </Link>
             
             <iframe
                 className="reproductor"

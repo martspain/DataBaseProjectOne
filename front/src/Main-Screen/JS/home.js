@@ -2,6 +2,8 @@ import React from "react";
 import { Route, useHistory } from "react-router";
 import BecomeX from "./Components/become";
 import SingleAlbum from "./Components/singleAlbum";
+import SingleArtist from "./Components/singleArtist";
+import SingleGenre from "./Components/singleGenre";
 import UserOptions from "./Components/UserOptions";
 import { SCREENS } from "./navigation";
 
@@ -33,6 +35,8 @@ const Home = () => {
                 <Route path="/home/search" children={SCREENS.SEARCH(search)} />
                 <Route path="/home/album/:id" component={SingleAlbum} />
                 <Route path="/home/become/:id" component={BecomeX} />
+                <Route path="/home/artist/:id" component={SingleArtist} />
+                <Route path="/home/genre/:id" component={SingleGenre} />
             </div>
         </div>
     )
