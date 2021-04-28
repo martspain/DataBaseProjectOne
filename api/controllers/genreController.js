@@ -11,7 +11,7 @@ const getGenre = (request, response) => {
     ON SG.song_id = S.id) Y) AS songs FROM Genre G WHERE G.id = ${id}`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
-        else response.status(201).json({ message: 'Manager creado' })
+        else response.status(201).json(results.rows[0])
     })
 }
 
