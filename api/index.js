@@ -16,7 +16,7 @@ const { createReproduction, accountReproductions } = require('./controllers/repr
 const { getGenre } = require('./controllers/genreController')
 
 const corsOptions = {
-    origin: 'http://localhost:8080'
+    origin: ['http://localhost:8080']
 }
 
 app.use(express.json())
@@ -34,6 +34,8 @@ app.get('/', (request, response) => {
 app.post('/signup', account.createAccount)
 /* Devuelve el token */
 app.post('/login', account.login)
+/* verifica el token de refresco y genera un nuevo token de acceso */
+app.post('/refreshToken', account.generateRefreshToken)
 /* Suscripcion por mes a la cuenta segun token */
 app.post('/subscribe', verifyToken, subscription.subscribe)
 /* Todas las canciones y sus artistas */

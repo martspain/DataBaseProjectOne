@@ -2,6 +2,7 @@ const { request, response } = require('express')
 const connection = require('./connection')
 const jwt = require('jsonwebtoken');
 const secretPassword = 'itsasecret';
+const refreshPassword = 'refreshthis';
 
 const verifyToken = (request, response, next) => {
     const bearer = request.headers['authorization'] // authorization debe estar en minusculas
@@ -47,4 +48,5 @@ module.exports = {
     verifySubscription,
     verifyManager,
     secretPassword,
+    refreshPassword,
 }

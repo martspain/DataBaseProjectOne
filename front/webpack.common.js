@@ -6,6 +6,7 @@ module.exports = {
   entry: path.resolve(__dirname, './src/index.jsx'),
   output: {
     path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
     filename: '[name].bundle.js',
   },
   plugins: [
@@ -48,14 +49,6 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|webp|svg)$/,
         type: 'asset/resource',
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'images',
-            },
-          },
-        ],
       },
     ],
   },

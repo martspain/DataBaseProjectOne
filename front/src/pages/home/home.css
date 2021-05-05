@@ -1,0 +1,12 @@
+.container {
+    height: calc(100vh - 130px);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+
+    .content-container {
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}

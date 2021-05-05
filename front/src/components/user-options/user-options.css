@@ -1,0 +1,48 @@
+$green-spofity: #32d055;
+$dark-green-spofity: #1f8535;
+$light-gray-spofity: rgb(226, 226, 226);
+
+.container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .reproductor {
+        width: 100vw;
+        height: 80px;
+        position: fixed;
+        bottom: 0;
+    }
+}
+
+.section-selector {
+    height: 40px;
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+
+    button {
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+
+        p {
+            font-weight: 600;
+            color: $green-spofity;
+        }
+    }
+}
+
+.section-active {
+    background-color: $light-gray-spofity;
+    padding-left: 30px;
+    
+    p {
+        color: $dark-green-spofity !important;
+    }
+}

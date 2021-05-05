@@ -1,0 +1,21 @@
+.container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px -5px black;
+    z-index: 1;
+
+    img {
+        width: 50px;
+    }
+
+    p {
+        font-family: 'Montserrat', sans-serif;
+        color: black;
+        font-size: 2em;
+        font-weight: 900;
+    }
+}

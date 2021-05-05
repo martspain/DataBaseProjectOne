@@ -1,0 +1,10 @@
+.container {
+    h1 {
+        color: white;
+        margin-left: 25px;
+    }
+    & > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}

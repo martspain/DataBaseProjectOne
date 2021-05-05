@@ -1,7 +1,7 @@
 const { request, response } = require('express')
 const connection = require('../connection')
 const jwt = require('jsonwebtoken');
-const { secretPassword } = require('../verificator');
+const { secretPassword, refreshPassword } = require('../verificator');
 
 const createAccount = (request, response) => {
     const data = request.body.account
@@ -21,7 +21,7 @@ const createAccount = (request, response) => {
 }
 
 const login = (request, response) => {
-    const data = request.body.login
+    const data = request.body.account
     connection.pool.query(`SELECT username,first_name,last_name,email
     FROM Account WHERE username = '${data.username}'`,
     (error, results) => {
@@ -57,9 +57,14 @@ const login = (request, response) => {
                                 response.status(500).json({ message: error.detail })
                             }
                             const token = jwt.sign({ user },
-                            secretPassword,
-                            { expiresIn: '24h' })
-                            response.status(200).json({ token, user })
+                                secretPassword,
+                                { expiresIn: '10m' }
+                            )
+                            const refreshToken = jwt.sign({ user },
+                                refreshPassword,
+                                { expiresIn: '1d' }    
+                            )
+                            response.status(200).json({ user, token, refreshToken })
                         } else response.status(401).json({ message: 'Contraseña incorrecta'})
                     }
                 })
@@ -68,7 +73,26 @@ const login = (request, response) => {
     })
 }
 
+const generateRefreshToken = (request, response) => {
+    const refreshToken = request.body.refreshToken
+    if (refreshToken) {
+        jwt.verify(refreshToken, refreshPassword, (error, authData) => {
+            if (error) response.status(403).json({ message: 'refresh token no valido' })
+            else {
+                const token = jwt.sign({ user: authData.user },
+                    secretPassword,
+                    {expiresIn: '10m'}
+                )
+                response.status(200).json({ token })
+            }
+        })
+    } else {
+        response.status(403).json({ message: 'Acceso denegado! no se encontró el token en la solicitud' })
+    }
+}
+
 module.exports = {
     createAccount,
     login,
+    generateRefreshToken
 }
