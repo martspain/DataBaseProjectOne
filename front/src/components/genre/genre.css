@@ -1,0 +1,38 @@
+$box-shadow-card: 0 0 10px -5px black;
+$green-spofity: #32d055;
+$dark-green-spofity: #1f8535;
+
+.container {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: $box-shadow-card;
+    transition: 0.5s;
+
+    a {
+        text-decoration: none;
+        width: auto;
+        padding: 0;
+    }
+
+    h3 {
+        color: $green-spofity;
+        font-weight: 800;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        transition: 0.5s;
+    }
+
+    &:hover {
+        background-color: $green-spofity;
+        transform: scale(1.05);
+        h3 {
+            color: $dark-green-spofity;
+            transform: scale(1.2);
+        }
+    }
+}

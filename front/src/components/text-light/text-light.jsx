@@ -12,6 +12,7 @@ const TextLight = ({ text, type }) => (
         || ((type === 'error') && <p className={styles.error}>{text}</p>)
         || ((type === 'warning') && <p className={styles.warning}>{text}</p>)
         || ((type === 'link') && <span>{text}</span>)
+        || ((type === 'section-title') && <h1 className={styles['section-title']}>{text}</h1>)
       }
   </div>
 )

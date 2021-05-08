@@ -33,6 +33,7 @@ const Home = () => {
           <>
             <Route path="/" exact component={SCREENS.DISCOVER} />
             <Route path="/become/:id" component={SCREENS.BECOME} />
+            <Route path="/statistics" component={SCREENS.STATISTICS} />
             <Redirect to="/" />
           </>
         )}

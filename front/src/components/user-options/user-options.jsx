@@ -40,9 +40,16 @@ const UserOptions = () => {
       {!(JSON.parse(localStorage.getItem('user'))?.manager) && (
         <ButtonLight text="Become Manager!" onClick={() => history.push('/become/manager')} />
       )}
+
       <Link to="/">
         <SectionSelector text="Discover" onClick={() => setSectionSelected('Discover')} active={sectionSelected === 'Discover'} />
       </Link>
+
+      {(JSON.parse(localStorage.getItem('user'))?.manager) && (
+        <Link to="/statistics">
+          <SectionSelector text="View Stats" onClick={() => setSectionSelected('View Stats')} active={sectionSelected === 'View Stats'} />
+        </Link>
+      )}
 
       <Link to="/login">
         <SectionSelector text="Logout" onClick={() => logout()} active={false} />

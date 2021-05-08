@@ -6,6 +6,7 @@ const TEXTS = {
   ERROR: 'error',
   LINK: 'link',
   WARNING: 'warning',
+  SECTIONTITLE: 'section-title',
 }
 
 export default TEXTS

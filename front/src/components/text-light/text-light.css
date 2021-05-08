@@ -7,6 +7,23 @@ $dark-green-spofity: #1f8535;
         width: 100%;
     }
 
+    .error {
+        color: red;
+        font-weight: 500;
+    }
+
+    .warning {
+        color: yellow;
+        font-weight: 500;
+    }
+
+    .section-title {
+        color: white;
+        margin: 5px 0 5px 25px;
+        font-size: 2em;
+        font-weight: 700;
+    }
+
     p {
         color: black;
         text-align: center;
@@ -27,16 +44,6 @@ $dark-green-spofity: #1f8535;
     h3 {
         color: $green-spofity;
         font-weight: 600;
-    }
-
-    .error {
-        color: red;
-        font-weight: 500;
-    }
-
-    .warning {
-        color: yellow;
-        font-weight: 500;
     }
 
     span {
