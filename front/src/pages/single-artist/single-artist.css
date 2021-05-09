@@ -1,0 +1,21 @@
+.container {
+    & > h1 {
+        color: white;
+        font-weight: 800;
+        font-size: 4em;
+        margin-left: 25px;
+    }
+    & > p {
+        color: white;
+        margin-left: 50px;
+        font-size: 2em;
+    }
+    .single-artist-albums {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 25px
+    }
+    .single-artist-songs {
+        margin: 25px;
+    }
+}

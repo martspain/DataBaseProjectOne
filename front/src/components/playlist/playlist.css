@@ -1,0 +1,37 @@
+$box-shadow-card: 0 0 10px -5px black;
+$dark-green-spofity: #1f8535;
+$green-spofity: #32d055;
+
+.container {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    box-shadow: $box-shadow-card;
+    transition: 0.5s;
+    a {
+        text-decoration: none;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        
+        h3 {
+            color: $green-spofity;
+            font-weight: 800;
+            padding: 0;
+            transition: 0.5s;
+        }
+
+        p {
+            color: white;
+        }
+    }
+    &:hover {
+        background-color: $green-spofity;
+        transform: scale(1.03);
+        h3 {
+            color: $dark-green-spofity;
+            transform: scale(1.06);
+        }
+    }
+}

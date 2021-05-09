@@ -5,14 +5,14 @@ import styles from './album.css'
 
 const Album = ({ album }) => (
   <div className={styles.container}>
-    <Link to={`/home/album/${album.id}`}>
+    <Link to={`/album/${album.id}`}>
       <img src={album.preview_url} alt={`${album.name} album`} />
       <h3>{album.name}</h3>
     </Link>
     <div>
       {
         album.artists?.map((artist) => (
-          <Link key={artist.artist_id} to={`/home/artist/${artist.artist_id}`}>
+          <Link key={artist.artist_id} to={`/artist/${artist.artist_id}`}>
             <p>{`${artist.artistic_name}, `}</p>
           </Link>
         ))

@@ -8,7 +8,7 @@ const getGenre = (request, response) => {
     (SELECT artist_id, artistic_name FROM Song_Artist SA INNER JOIN Artist A
     ON SA.artist_id = A.id WHERE SA.song_id = S.id) X) AS artists
     FROM Song_Genre SG INNER JOIN Song S
-    ON SG.song_id = S.id) Y) AS songs FROM Genre G WHERE G.id = ${id}`,
+    ON SG.song_id = S.id WHERE SG.genre_id = ${id}) Y) AS songs FROM Genre G WHERE G.id = ${id}`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
         else response.status(201).json(results.rows[0])

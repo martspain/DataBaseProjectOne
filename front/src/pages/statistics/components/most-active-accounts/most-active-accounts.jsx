@@ -19,10 +19,10 @@ const MostActiveAccounts = () => {
         <p>Number of Reproductions</p>
         {
           data.map((account) => (
-            <>
+            <React.Fragment key={account.username}>
               <p>{account.username}</p>
               <p>{account.cantidad_reproducciones}</p>
-            </>
+            </React.Fragment>
           ))
         }
       </div>

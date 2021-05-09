@@ -8,7 +8,14 @@ import styles from './home.css'
 
 const Home = () => {
   const [refreshTokenValid, setRefreshTokenValid] = useState(false)
+  const [search, setSearch] = useState('')
   const history = useHistory()
+
+  const handleInputChange = (event) => {
+    const { value } = event.target
+    setSearch(value)
+    history.push('/search')
+  }
 
   useEffect(async () => {
     if (!localStorage.getItem('refreshToken')) {
@@ -29,11 +36,22 @@ const Home = () => {
     <div className={styles.container}>
       <UserOptions />
       <div className={styles['content-container']}>
+        <input
+          className={styles['song-search-bar']}
+          type="text"
+          value={search}
+          onChange={handleInputChange}
+          placeholder="Search Song, Album, Artist, Genre or Playlist"
+        />
         {refreshTokenValid && (
           <>
             <Route path="/" exact component={SCREENS.DISCOVER} />
             <Route path="/become/:id" component={SCREENS.BECOME} />
             <Route path="/statistics" component={SCREENS.STATISTICS} />
+            <Route path="/album/:id" component={SCREENS.ALBUM} />
+            <Route path="/artist/:id" component={SCREENS.ARTIST} />
+            <Route path="/genre/:id" component={SCREENS.GENRE} />
+            <Route path="/search" render={() => SCREENS.SEARCH(search)} />
             <Redirect to="/" />
           </>
         )}

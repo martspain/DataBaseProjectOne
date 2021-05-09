@@ -22,17 +22,20 @@ $light-gray-spofity: rgb(226, 226, 226);
 
 .section-selector {
     height: 40px;
-    padding-left: 25px;
     display: flex;
     align-items: center;
 
     button {
         background-color: transparent;
         border: 0;
+        width: 100%;
+        height: 100%;
+        padding-left: 15px;
         cursor: pointer;
 
         p {
             font-weight: 600;
+            text-align: initial;
             color: $green-spofity;
         }
     }
@@ -40,9 +43,12 @@ $light-gray-spofity: rgb(226, 226, 226);
 
 .section-active {
     background-color: $light-gray-spofity;
-    padding-left: 30px;
-    
-    p {
-        color: $dark-green-spofity !important;
+
+    button {
+        padding-left: 30px;
+
+        p {
+            color: $dark-green-spofity !important;
+        }
     }
 }
