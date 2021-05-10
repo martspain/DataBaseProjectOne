@@ -16,12 +16,13 @@ const SubscriptionCount = () => {
   return (
     <div className={styles.container}>
       <TextLight text="Number of new monthly subscriptions during the last 6 months" type={TEXTS.TITLE2} />
-      <div className={styles['cards-container']}>
+      <div className={styles['table-container']}>
         <p>Month of Year</p>
         <p>Number of subscriptions</p>
         {data.map((month) => (
           <React.Fragment key={`${months[new Date(month.start_date_a_mes).getMonth() + 1]}
-            of ${new Date(month.start_date_a_mes).getFullYear()}`}>
+            of ${new Date(month.start_date_a_mes).getFullYear()}`}
+          >
             <p>
               {`${months[new Date(month.start_date_a_mes).getMonth() + 1]}
             of ${new Date(month.start_date_a_mes).getFullYear()}`}

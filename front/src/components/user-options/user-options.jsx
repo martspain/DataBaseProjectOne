@@ -51,6 +51,12 @@ const UserOptions = () => {
         </Link>
       )}
 
+      {(JSON.parse(localStorage.getItem('user'))?.manager) && (
+        <Link to="/monitor">
+          <SectionSelector text="Make Monitor" onClick={() => setSectionSelected('Make Monitor')} active={sectionSelected === 'Make Monitor'} />
+        </Link>
+      )}
+
       <Link to="/login">
         <SectionSelector text="Logout" onClick={() => logout()} active={false} />
       </Link>

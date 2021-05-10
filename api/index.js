@@ -7,11 +7,22 @@ const { getAlbums, getAlbum, createAlbum } = require('./controllers/albumControl
 const { getArtist, createArtist } = require('./controllers/artistController')
 const { createManager } = require('./controllers/managerController')
 const { createPlaylist, getPlaylists } = require('./controllers/playlistController')
-const { search } = require('./controllers/searchController')
+const { search, searchArtist } = require('./controllers/searchController')
 const song = require('./controllers/songController')
 const subscription = require('./controllers/subscriptionController')
 const { verifyToken, verifyArtist, verifySubscription, verifyManager } = require('./verificator')
-const { recentAlbums, popularArtists, subscriptionCount, largestProductionArtists, popularGenres, activeAccounts } = require('./controllers/statisticsController')
+const {
+    recentAlbums,
+    popularArtists,
+    subscriptionCount,
+    largestProductionArtists,
+    popularGenres,
+    activeAccounts,
+    salesByDate,
+    NartistSalesByDate,
+    genreSalesByDate,
+    mostPlayedSongsByArtist,
+} = require('./controllers/statisticsController')
 const { createReproduction, accountReproductions } = require('./controllers/reproductionController')
 const { getGenre } = require('./controllers/genreController')
 
@@ -54,6 +65,8 @@ app.post('/artists', verifyToken, createArtist)
 app.get('/artists/:id', verifyToken, getArtist)
 /* Busca por nombre de cancion, nombre de artista, nombre de album y genero */
 app.post('/search', verifyToken, search)
+/* Busca por nombre de artista */
+app.post('/search/artists', verifyToken, searchArtist)
 /* Crea una playlist del usuario */
 app.post('/playlists', verifyToken, verifySubscription, createPlaylist)
 /* Crea un manager para el usuario logeado */
@@ -70,6 +83,14 @@ app.get('/statistics/largestProductionArtists', verifyToken, verifyManager, larg
 app.get('/statistics/popularGenres', verifyToken, verifyManager, popularGenres)
 /* Usuarios más activos en la plataforma */
 app.get('/statistics/mostActiveAccounts', verifyToken, verifyManager, activeAccounts)
+/* Ventas por semana segun la fecha de inicio y final indicada */
+app.post('/statistics/salesByDate', verifyToken, verifyManager, salesByDate)
+/* Artistas con mayores ventas en un rango de fechas y limite de artistas dados */
+app.post('/statistics/NartistSalesByDate', verifyToken, verifyManager, NartistSalesByDate)
+/* Ventas por genero dado un rango de fechas */
+app.post('/statistics/genreSalesByDate', verifyToken, verifyManager, genreSalesByDate)
+/* Las N canciones mas reproducidas de un artista dado */
+app.post('/statistics/mostPlayedSongsByArtist', verifyToken, verifyManager, mostPlayedSongsByArtist)
 /* Cambia el estado boolean de active para una cancion especifica */
 app.put('/songs/changeActive', verifyToken, verifyManager, song.changeActiveSong)
 /* Obtener playlists de un usuario especifico*/

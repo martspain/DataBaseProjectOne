@@ -1,0 +1,48 @@
+$green-spofity: #32d055;
+$box-shadow-card: 0 0 10px -5px black;
+
+.container {
+    margin-top: 50px;
+    
+    .inputs-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        & > div {
+            margin: 15px;
+
+            & > p {
+                color: $green-spofity;
+            }
+
+            &:last-child {
+                width: 200px;
+            }
+        }
+    }
+    
+    .grid-container {
+        display: grid;
+        max-width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        margin: 0 50px 0 50px;
+
+        & > div {
+            margin-top: 15px;
+        }
+
+        div{
+            & > p {
+                color: white;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    & > p {
+        color: white;
+        text-align: center;
+        margin: 10px;
+    }
+}

@@ -63,6 +63,46 @@ const mostActiveAccounts = async () => {
   return data
 }
 
+const salesByDate = async (dates) => {
+  let data = null
+  await axios.post(`${NURL}/salesByDate`, { dates }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
+const NartistSalesByDate = async (dates, limit) => {
+  let data = null
+  await axios.post(`${NURL}/NartistSalesByDate`, { dates, limit }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
+const genreSalesByDate = async (dates) => {
+  let data = null
+  await axios.post(`${NURL}/genreSalesByDate`, { dates }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
+const mostPlayedSongsByArtist = async (artistId, limit) => {
+  let data = null
+  await axios.post(`${NURL}/mostPlayedSongsByArtist`, { artist_id: artistId, limit }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
 export {
   recentAlbums,
   popularArtists,
@@ -70,4 +110,8 @@ export {
   popularGenres,
   mostActiveAccounts,
   subscriptionCount,
+  salesByDate,
+  NartistSalesByDate,
+  genreSalesByDate,
+  mostPlayedSongsByArtist,
 }

@@ -6,7 +6,7 @@ import Artist from '../../components/artist/artist'
 import Genre from '../../components/genre/genre'
 import Playlist from '../../components/playlist/playlist'
 import SongCard from '../../components/song-card/song-card'
-import search from '../../services/searchService'
+import { search } from '../../services/searchService'
 import styles from './search-results.css'
 
 const SearchResults = ({ toFind }) => {

@@ -52,6 +52,7 @@ const Home = () => {
             <Route path="/artist/:id" component={SCREENS.ARTIST} />
             <Route path="/genre/:id" component={SCREENS.GENRE} />
             <Route path="/search" render={() => SCREENS.SEARCH(search)} />
+            <Route path="/monitor" component={SCREENS.MONITOR} />
             <Redirect to="/" />
           </>
         )}

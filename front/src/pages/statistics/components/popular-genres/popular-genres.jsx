@@ -14,7 +14,7 @@ const PopularGenres = () => {
 
   return (
     <div className={styles.container}>
-      <TextLight text="Top Popular Genres" type={TEXTS.TITLE2} />
+      <TextLight text="Top Popular Genres in the last 3 months" type={TEXTS.TITLE2} />
       <div className={styles['grid-container']}>
         {
         data.map((genre) => (

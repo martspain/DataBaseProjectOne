@@ -2,6 +2,7 @@ import React from 'react'
 import Become from '../pages/become/become'
 import Discover from '../pages/discover/discover'
 import Login from '../pages/login/login'
+import MakeMonitor from '../pages/make-monitor/make-monitor'
 import SearchResults from '../pages/search-results/search-results'
 import Signup from '../pages/signup/signup'
 import SingleAlbum from '../pages/single-album/single-album'
@@ -19,6 +20,7 @@ const SCREENS = {
   ARTIST: () => (<SingleArtist />),
   GENRE: () => (<SingleGenre />),
   SEARCH: (toFind) => (<SearchResults toFind={toFind} />),
+  MONITOR: () => (<MakeMonitor />),
 }
 
 export default SCREENS

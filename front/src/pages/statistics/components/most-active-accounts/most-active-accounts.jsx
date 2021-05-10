@@ -13,8 +13,8 @@ const MostActiveAccounts = () => {
 
   return (
     <div className={styles.container}>
-      <TextLight text="Most active accounts on the platform" type={TEXTS.TITLE2} />
-      <div className={styles['cards-container']}>
+      <TextLight text="Most active accounts on the platform in the last month" type={TEXTS.TITLE2} />
+      <div className={styles['table-container']}>
         <p>Account Username</p>
         <p>Number of Reproductions</p>
         {
