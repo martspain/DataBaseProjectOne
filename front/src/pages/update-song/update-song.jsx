@@ -17,7 +17,7 @@ const UpdateSong = () => {
 
   useEffect(() => {
     getAllSongs().then((res) => setData(res))
-  }, [])
+  }, [data])
 
   const handleInputChangeSearch = (event) => {
     const { value } = event.target
@@ -34,21 +34,25 @@ const UpdateSong = () => {
     })
   }
 
-  const saveUpdates = () => {
-    updateSong({
+  const saveUpdates = (song) => {
+    const newSong = {
       id: selected.id,
-      values: [
-        {
-          field: 'name',
-          value: selected.name,
-        },
-        {
-          field: 'active',
-          value: selected.active,
-        },
-      ],
-    }).then((res) => {
-      console.log(res)
+      values: [],
+    }
+    if (selected.name !== song.name) {
+      newSong.values.push({
+        field: 'name',
+        value: selected.name,
+      })
+    }
+    if (selected.active !== song.active) {
+      newSong.values.push({
+        field: 'active',
+        value: selected.active,
+      })
+    }
+    updateSong(newSong).then(() => {
+      getAllSongs().then((res) => setData(res))
     })
     setSelected({
       id: '',
@@ -100,6 +104,7 @@ const UpdateSong = () => {
                     <TextLight text={song.album} type={TEXTS.TEXT} />
                   </div>
                   <div>
+                    <TextLight text="Artists:" type={TEXTS.TEXT} />
                     {
                     song.artists?.map((artist) => (
                       <div key={artist.artist_id}>
@@ -108,7 +113,7 @@ const UpdateSong = () => {
                     ))
                   }
                   </div>
-                  <ButtonLight text="Save" onClick={saveUpdates} />
+                  <ButtonLight text="Save" onClick={() => saveUpdates(song)} />
                 </div>
               ) : (
                 <div key={song.id} className={styles['song-update-container']}>
@@ -123,6 +128,7 @@ const UpdateSong = () => {
                     checked={song.active}
                   />
                   <div>
+                    <TextLight text="Album:" type={TEXTS.TEXT} />
                     <img src={song.cover} alt="album cover" />
                     <TextLight text={song.album} type={TEXTS.TEXT} />
                   </div>

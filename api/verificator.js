@@ -43,10 +43,22 @@ const verifyManager = (request, response, next) => {
 }
 
 const verifyMonitorA = (request, response, next) => {
-    if (typeof request.user.monitor?.monitor_type !== 'undefined') {
+    if (request.user.monitor.monitor_type === 'A') {
         next()
+    } else if (typeof request.user.manager !== 'undefined') {
+        verifyManager(request, response, next)
     } else {
-        response.status(403).json({ message: 'Acceso de monitor no autorizado' })
+        response.status(403).json({ message: 'Acceso de monitor A no autorizado' })
+    }
+}
+
+const verifyMonitorB = (request, response, next) => {
+    if (request.user.monitor.monitor_type === 'B') {
+        next()
+    } else if (typeof request.user.manager !== 'undefined') {
+        verifyManager(request, response, next)
+    } else {
+        response.status(403).json({ message: 'Acceso de monitor B no autorizado' })
     }
 }
 
@@ -57,4 +69,6 @@ module.exports = {
     verifyManager,
     secretPassword,
     refreshPassword,
+    verifyMonitorA,
+    verifyMonitorB,
 }

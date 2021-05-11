@@ -50,8 +50,24 @@ const createAlbum = (request, response) => {
     })
 }
 
+const updateAlbum = (request, response) => {
+    const album = request.body.album
+    const errorReturn = null
+    album.values.forEach((value) => {
+        connection.pool.query(`CALL BIN_CONTROL_UPD('${album.id}', NULL, '${request.user.monitor.username}',
+        'Album', '${value.field}', ${(typeof value.value === 'string') ? `'${value.value}'` : 'NULL'},
+        ${(typeof value.value === 'boolean') ? `'${value.value}'` : 'NULL'})`,
+        (error, results) => {
+            if (error) errorReturn = error
+        })
+        if (errorReturn) response.status(500).json({ message: errorReturn.detail })
+        else response.status(202).json({ message: 'Album actualizado con exito' })
+    })
+}
+
 module.exports = {
     getAlbums,
     getAlbum,
     createAlbum,
+    updateAlbum,
 }

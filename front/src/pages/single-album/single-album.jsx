@@ -39,7 +39,11 @@ const SingleAlbum = () => {
       <div className={styles['single-album-songs']}>
         <p>Songs of this Album</p>
         {
-          data.songs?.map((song) => (<SimpleSong key={song.id} song={song} />))
+          data.songs?.map((song) => (
+            <React.Fragment key={song.id}>
+              <SimpleSong song={song} />
+            </React.Fragment>
+          ))
         }
       </div>
     </div>

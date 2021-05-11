@@ -4,6 +4,9 @@ $box-shadow-card: 0 0 10px -5px black;
 .container {
     & > div:first-child {
         margin: 15px;
+        p {
+            color: $green-spofity;
+        }
     }
     .song-update-container {
         background-color: rgba(0, 0, 0, 0.2);
@@ -37,6 +40,8 @@ $box-shadow-card: 0 0 10px -5px black;
 
         img {
             width: 50px;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
         input {

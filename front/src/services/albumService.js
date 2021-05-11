@@ -23,7 +23,18 @@ const getAlbum = async (id) => {
   return data
 }
 
+const updateAlbum = async (album) => {
+  let data = null
+  await axios.put(NURL, { album }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
 export {
   getAllAlbums,
   getAlbum,
+  updateAlbum,
 }

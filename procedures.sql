@@ -37,6 +37,11 @@ BEGIN
 			INSERT INTO Binnacle(author, table_affected, action, record_date) VALUES(author_user, table_sel, 'Actualización de nombre de album.', DEFAULT);
 			RAISE NOTICE 'Nombre de album actualizado exitosamente.';
 		END IF;
+		IF field_sel = 'preview_url' AND new_value_text IS NOT NULL THEN
+			UPDATE Album SET preview_url = new_value_text WHERE id = cond_key_text;
+			INSERT INTO Binnacle(author, table_affected, action, record_date) VALUES(author_user, table_sel, 'Actualización de preview_url de album.', DEFAULT);
+			RAISE NOTICE 'Preview URL de album actualizada exitosamente.';
+		END IF;
 		IF field_sel = 'active' AND new_value_bool IS NOT NULL THEN
 			UPDATE Album SET active = new_value_bool WHERE id = cond_key_text;
 			INSERT INTO Binnacle(author, table_affected, action, record_date) VALUES(author_user, table_sel, 'Actualización de estado de album.', DEFAULT);

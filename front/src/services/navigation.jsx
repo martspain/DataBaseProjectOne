@@ -1,5 +1,6 @@
 import React from 'react'
 import Become from '../pages/become/become'
+import Binnacle from '../pages/binnacle/binnacle'
 import Discover from '../pages/discover/discover'
 import Login from '../pages/login/login'
 import MakeMonitor from '../pages/make-monitor/make-monitor'
@@ -9,6 +10,7 @@ import SingleAlbum from '../pages/single-album/single-album'
 import SingleArtist from '../pages/single-artist/single-artist'
 import SingleGenre from '../pages/single-genre/single-genre'
 import Statistics from '../pages/statistics/statistics'
+import UpdateAlbum from '../pages/update-album/update-album'
 import UpdateSong from '../pages/update-song/update-song'
 
 const SCREENS = {
@@ -23,6 +25,8 @@ const SCREENS = {
   SEARCH: (toFind) => (<SearchResults toFind={toFind} />),
   MONITOR: () => (<MakeMonitor />),
   UPDATESONG: () => (<UpdateSong />),
+  UPDATEALBUM: () => (<UpdateAlbum />),
+  BINNACLE: () => (<Binnacle />),
 }
 
 export default SCREENS

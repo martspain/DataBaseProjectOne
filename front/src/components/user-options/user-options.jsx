@@ -63,6 +63,18 @@ const UserOptions = () => {
         </Link>
       )}
 
+      {(JSON.parse(localStorage.getItem('user'))?.monitor?.monitor_type === 'A') && (
+        <Link to="/monitor/updateAlbum">
+          <SectionSelector text="Update Album" onClick={() => setSectionSelected('Update Album')} active={sectionSelected === 'Update Album'} />
+        </Link>
+      )}
+
+      {(JSON.parse(localStorage.getItem('user'))?.monitor?.monitor_type === 'B') && (
+        <Link to="/binnacle">
+          <SectionSelector text="Binnacle" onClick={() => setSectionSelected('Binnacle')} active={sectionSelected === 'Binnacle'} />
+        </Link>
+      )}
+
       <Link to="/login">
         <SectionSelector text="Logout" onClick={() => logout()} active={false} />
       </Link>

@@ -13,7 +13,7 @@ body {
     animation: change-grad-color 20s infinite alternate;
 
     
-    p, h1, h2, h3, a, input {
+    p, h1, h2, h3, a, input, textarea {
         margin: 0;
         font-family: 'Montserrat', sans-serif;
     }

@@ -13,14 +13,16 @@ const MostPlayedSongsByArtist = () => {
   const [data, setData] = useState([])
   const [toFind, setToFind] = useState('')
   const [artists, setArtists] = useState([])
-  const [artistId, setArtistId] = useState('')
   const [limit, setLimit] = useState('10')
 
   const handleInputChangeSearch = (event) => {
     const { value } = event.target
-    setToFind(value)
     searchArtist(toFind).then((res) => setArtists(res))
+    setToFind(value)
   }
+
+  useEffect(() => {
+  }, [artists])
 
   const handleInputChangeNumber = (event) => {
     const { value } = event.target
@@ -30,14 +32,28 @@ const MostPlayedSongsByArtist = () => {
   }
 
   const getSales = () => {
-    if (artistId === '') alert('Busque y seleccione un artista')
-    else mostPlayedSongsByArtist(artistId, limit).then((res) => setData(res))
+    if (toFind === '') alert('Busque y seleccione un artista')
+    else mostPlayedSongsByArtist(toFind, limit).then((res) => setData(res))
   }
 
   return (
     <div className={styles.container}>
       <TextLight text="Most Played Songs By Artist" type={TEXTS.TITLE2} />
       <div className={styles['inputs-container']}>
+        <InputLight
+          title="Search Artist"
+          type="search"
+          name="toFind"
+          value={toFind}
+          onChange={handleInputChangeSearch}
+          placeHolder="Search an artist by name"
+          list="search-most-played-songs-by-artist"
+        />
+        <datalist id="search-most-played-songs-by-artist">
+          {
+            artists.map((artist) => <option value={artist.found.id} label={artist.found.artistic_name} />)
+          }
+        </datalist>
         <InputLight
           title="Number of songs to show"
           type="number"
@@ -61,7 +77,7 @@ const MostPlayedSongsByArtist = () => {
         }
       </div>
       {
-        (data.length === 0) && <p>There is no sales for genres between these dates</p>
+        (data.length === 0) && <p>There is no played songs for this artist</p>
       }
     </div>
   )

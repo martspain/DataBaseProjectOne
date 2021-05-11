@@ -54,6 +54,8 @@ const Home = () => {
             <Route path="/search" render={() => SCREENS.SEARCH(search)} />
             <Route path="/makeMonitor" component={SCREENS.MONITOR} />
             <Route path="/monitor/updateSong" component={SCREENS.UPDATESONG} />
+            <Route path="/monitor/updateAlbum" component={SCREENS.UPDATEALBUM} />
+            <Route path="/binnacle" component={SCREENS.BINNACLE} />
             <Redirect to="/" />
           </>
         )}

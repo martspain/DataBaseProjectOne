@@ -17,7 +17,7 @@ const RecentAlbums = () => {
       <TextLight text="Recent Albums of Last Week" type={TEXTS.TITLE2} />
       <div className={styles['albums-container']}>
         {
-            data.map((album) => <Album key={album.id} album={album} />)
+          data.map((album) => <Album key={album.id} album={album} />)
         }
       </div>
       {

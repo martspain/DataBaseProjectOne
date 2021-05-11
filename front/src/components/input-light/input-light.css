@@ -7,7 +7,7 @@ $dark-green-spofity: #1f8535;
         color: $dark-green-spofity;
     }
 
-    input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="number"] {
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="number"], input[type="search"] {
         border:none;
         background-color: rgb(230, 230, 230); 
         border-radius: 25px;
@@ -15,15 +15,15 @@ $dark-green-spofity: #1f8535;
         padding: 0 25px 0 25px;
         width: 100%;
         box-sizing: border-box;
-        height:40px;
+        height: 40px;
         font-size: 1em;
         margin-top: 5px;
         margin-bottom: 30px;
     }
     
     input[type="checkbox"] {
-        width: 100%;
-        height: 25%;
+        width: 25px;
+        height: 25px;
         margin-top: 15px;
     }
 
