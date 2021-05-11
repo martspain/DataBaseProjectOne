@@ -25,6 +25,7 @@ const {
 } = require('./controllers/statisticsController')
 const { createReproduction, accountReproductions } = require('./controllers/reproductionController')
 const { getGenre } = require('./controllers/genreController')
+const { getNoMonitors, createMonitor } = require('./controllers/monitorController')
 
 const corsOptions = {
     origin: ['http://localhost:8080']
@@ -53,6 +54,8 @@ app.post('/subscribe', verifyToken, subscription.subscribe)
 app.get('/songs', verifyToken, song.getSongs)
 /* Crea una cancion del artista */
 app.post('/songs', verifyToken, verifyArtist, song.createSong)
+/* Actualiza una cancion y agrega a la bitacora */
+app.put('/songs', verifyToken, verifyManager, song.updateSong)
 /* Todos los albumes con sus artistas y canciones (y artistas de canciones) */
 app.get('/albums', verifyToken, getAlbums)
 /* Crea un album para el artista */
@@ -101,6 +104,10 @@ app.post('/reproduction/:id', verifyToken, createReproduction)
 app.get('/reproduction/accountReproductions', verifyToken, accountReproductions)
 /* Obtiene todas las canciones de un genero */
 app.get('/genres/:id', verifyToken, getGenre)
+/* Obtiene los usuarios que no son monitores */
+app.get('/monitors/noMonitors', verifyToken, verifyManager, getNoMonitors)
+/* Crea un monitor del tipo dado */
+app.post('/monitors', verifyToken, verifyManager, createMonitor)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

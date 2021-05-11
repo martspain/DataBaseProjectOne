@@ -56,6 +56,13 @@ const login = (request, response) => {
                             } catch (error) {
                                 response.status(500).json({ message: error.detail })
                             }
+                            try {
+                                const { rows } = await connection.pool.query(`SELECT * FROM Monitor 
+                                WHERE username = '${user.account.username}'`)
+                                user.monitor = rows[0]
+                            } catch (error) {
+                                response.status(500).json({ message: error.detail })
+                            }
                             const token = jwt.sign({ user },
                                 secretPassword,
                                 { expiresIn: '10m' }
@@ -94,5 +101,5 @@ const generateRefreshToken = (request, response) => {
 module.exports = {
     createAccount,
     login,
-    generateRefreshToken
+    generateRefreshToken,
 }

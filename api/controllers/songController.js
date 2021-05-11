@@ -44,8 +44,22 @@ const changeActiveSong = (request, response) => {
     })
 }
 
+const updateSong = (request, response) => {
+    const song = request.body.song
+    const errorReturn = null
+    song.values.forEach((value) => {
+        console.log(value)
+        connection.pool.query(`CALL BIN_CONTROL_UPD('${song.id}', NULL, '${request.user.monitor.username}',
+        'Song', '${value.field}', ${(typeof value.value === 'string') ? `'${value.value}'` : 'NULL'},
+        ${(typeof value.value === 'boolean') ? `'${value.value}'` : 'NULL'})`)
+    })
+    if (errorReturn) response.status(500).json({ message: errorReturn.detail })
+    else response.status(202).json({ message: 'Cancion actualizada con exito' })
+}
+
 module.exports = {
     getSongs,
     createSong,
     changeActiveSong,
+    updateSong,
 }

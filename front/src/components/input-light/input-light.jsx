@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './input-light.css'
 
 const InputLight = ({
-  title, type, name, value, onChange, placeHolder, min, max,
+  title, type, name, value, onChange, placeHolder, min, max, disabled, checked,
 }) => (
   <div className={styles.container}>
     <p>{title}</p>
@@ -15,6 +15,8 @@ const InputLight = ({
       placeholder={placeHolder}
       min={(type === 'number') ? min : ''}
       max={(type === 'number') ? max : ''}
+      disabled={disabled}
+      checked={checked}
     />
   </div>
 )
@@ -28,6 +30,8 @@ InputLight.propTypes = {
   placeHolder: PropTypes.string,
   min: PropTypes.string,
   max: PropTypes.string,
+  disabled: PropTypes.bool,
+  checked: PropTypes.bool,
 }
 
 InputLight.defaultProps = {
@@ -36,6 +40,8 @@ InputLight.defaultProps = {
   placeHolder: '',
   min: '',
   max: '',
+  disabled: false,
+  checked: false,
 }
 
 export default InputLight

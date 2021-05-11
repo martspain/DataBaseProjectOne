@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import InputLight from '../../components/input-light/input-light'
 import TextLight from '../../components/text-light/text-light'
@@ -7,11 +7,11 @@ import TEXTS from '../../services/texts'
 import styles from './login.css'
 
 const Login = () => {
-  const [account, setAccount] = React.useState({
+  const [account, setAccount] = useState({
     username: '',
     password: '',
   })
-  const [message, setMessage] = React.useState('')
+  const [message, setMessage] = useState('')
   const history = useHistory()
 
   const handleInputChange = (event) => {

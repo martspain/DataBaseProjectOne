@@ -9,6 +9,7 @@ import SingleAlbum from '../pages/single-album/single-album'
 import SingleArtist from '../pages/single-artist/single-artist'
 import SingleGenre from '../pages/single-genre/single-genre'
 import Statistics from '../pages/statistics/statistics'
+import UpdateSong from '../pages/update-song/update-song'
 
 const SCREENS = {
   LOGIN: () => (<Login />),
@@ -21,6 +22,7 @@ const SCREENS = {
   GENRE: () => (<SingleGenre />),
   SEARCH: (toFind) => (<SearchResults toFind={toFind} />),
   MONITOR: () => (<MakeMonitor />),
+  UPDATESONG: () => (<UpdateSong />),
 }
 
 export default SCREENS

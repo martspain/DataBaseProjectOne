@@ -52,8 +52,14 @@ const UserOptions = () => {
       )}
 
       {(JSON.parse(localStorage.getItem('user'))?.manager) && (
-        <Link to="/monitor">
+        <Link to="/makeMonitor">
           <SectionSelector text="Make Monitor" onClick={() => setSectionSelected('Make Monitor')} active={sectionSelected === 'Make Monitor'} />
+        </Link>
+      )}
+
+      {(JSON.parse(localStorage.getItem('user'))?.monitor?.monitor_type === 'A') && (
+        <Link to="/monitor/updateSong">
+          <SectionSelector text="Update Song" onClick={() => setSectionSelected('Update Song')} active={sectionSelected === 'Update Song'} />
         </Link>
       )}
 

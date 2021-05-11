@@ -42,6 +42,14 @@ const verifyManager = (request, response, next) => {
     }
 }
 
+const verifyMonitorA = (request, response, next) => {
+    if (typeof request.user.monitor?.monitor_type !== 'undefined') {
+        next()
+    } else {
+        response.status(403).json({ message: 'Acceso de monitor no autorizado' })
+    }
+}
+
 module.exports = {
     verifyToken,
     verifyArtist,
