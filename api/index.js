@@ -4,7 +4,7 @@ const port = 3000
 const cors = require('cors')
 const account = require('./controllers/accountController')
 const { getAlbums, getAlbum, createAlbum, updateAlbum } = require('./controllers/albumController')
-const { getArtist, createArtist, getArtistsAccounts } = require('./controllers/artistController')
+const { getArtist, createArtist, getArtistsAccounts, deactivateArtist } = require('./controllers/artistController')
 const { createManager } = require('./controllers/managerController')
 const { createPlaylist, getPlaylists } = require('./controllers/playlistController')
 const { search, searchArtist } = require('./controllers/searchController')
@@ -62,6 +62,10 @@ app.post('/subscription/subscribe', verifyToken, subscription.subscribe)
 app.get('/subscription/nonSubscribedAccounts', verifyToken, verifyMonitorA, subscription.nonSubscribedAccounts)
 /* Devuelve las cuentas que tienen suscripcion activa */
 app.get('/subscription/subscribedAccounts', verifyToken, verifyMonitorA, subscription.subscribedAccounts)
+/* Cambia el estado de activo de una cuenta sin subscripcion y agrega a la bitacora*/
+app.put('/subscription/deactivateNonSubscribed', verifyToken, verifyMonitorA, subscription.deactivateNonSubscribed)
+/* Elimina una suscripcion y agrega a la bitacora */
+app.put('/subscription/removeSubscription', verifyToken, verifyMonitorA, subscription.removeSubscription)
 /* Todas las canciones y sus artistas */
 app.get('/songs', verifyToken, song.getSongs)
 /* Crea una cancion del artista */
@@ -83,6 +87,8 @@ app.post('/artists', verifyToken, createArtist)
 app.get('/artists/accounts', verifyToken, verifyMonitorB, getArtistsAccounts)
 /* Artista y sus albumes */
 app.get('/artists/:id', verifyToken, getArtist)
+/* Cambia el estado de activo de un Artista, en consecuencia albumes y canciones y agrega a bitacora */
+app.put('/artists/deactivateArtist', verifyToken, verifyMonitorB, deactivateArtist)
 /* Busca por nombre de cancion, nombre de artista, nombre de album y genero */
 app.post('/search', verifyToken, search)
 /* Busca por nombre de artista */

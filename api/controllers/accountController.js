@@ -47,6 +47,10 @@ const login = (request, response) => {
                                     const { rows } = await connection.pool.query(`SELECT * FROM Artist 
                                     WHERE username = '${user.account.username}'`)
                                     user.artist = rows[0]
+                                    if (rows.length > 0 && !user.artist.active) {
+                                        response.status(401).json({ message: 'Tu cuenta de artista está inactiva! Contacta con un administrador o Monitor tipo B'})
+                                        return
+                                    }
                                 } catch (error) {
                                     response.status(500).json({ message: error.detail })
                                 }

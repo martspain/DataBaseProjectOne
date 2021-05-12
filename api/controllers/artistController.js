@@ -38,7 +38,7 @@ const createArtist = (request, response) => {
 }
 
 const getArtistsAccounts = (request, response) => {
-    connection.pool.query(`SELECT A.username, first_name, last_name, email, active, id, artistic_name 
+    connection.pool.query(`SELECT A.username, first_name, last_name, email, ART.active, id, artistic_name 
     FROM Account A INNER JOIN Artist ART ON A.username = ART.username`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
@@ -46,8 +46,19 @@ const getArtistsAccounts = (request, response) => {
     })
 }
 
+const deactivateArtist = (request, response) => {
+    const artist = request.body.artist
+    connection.pool.query(`CALL BIN_CONTROL_UPD('${artist.id}', NULL, '${request.user.monitor.username}',
+    'Artist', 'active', NULL, '${artist.active}')`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(202).json({ message: 'Artista actualizado' })
+    })
+}
+
 module.exports = {
     getArtist,
     createArtist,
     getArtistsAccounts,
+    deactivateArtist,
 }

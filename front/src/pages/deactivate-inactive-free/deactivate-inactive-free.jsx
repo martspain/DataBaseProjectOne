@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ButtonLight from '../../components/button-light/button-light'
 import InputLight from '../../components/input-light/input-light'
 import TextLight from '../../components/text-light/text-light'
-import { getNonSubscribedAccounts } from '../../services/subscriptionService'
+import { deactivateNonSubscribed, getNonSubscribedAccounts } from '../../services/subscriptionService'
 import TEXTS from '../../services/texts'
 import styles from './deactivate-inactive-free.css'
 
@@ -17,6 +17,12 @@ const DeactivateInactiveFree = () => {
   const handleInputChangeSearch = (event) => {
     const { value } = event.target
     setToFind(value)
+  }
+
+  const deactivate = (account) => {
+    deactivateNonSubscribed({ username: account.username, active: !account.active }).then(() => {
+      getNonSubscribedAccounts().then((res) => setData(res))
+    })
   }
 
   return (
@@ -46,9 +52,9 @@ const DeactivateInactiveFree = () => {
             {
               (account.active)
                 ? (
-                  <ButtonLight text="Deactivate" onClick={() => {}} />
+                  <ButtonLight text="Deactivate" onClick={() => deactivate(account)} />
                 ) : (
-                  <ButtonLight text="Activate" onClick={() => {}} />
+                  <ButtonLight text="Activate" onClick={() => deactivate(account)} />
                 )
             }
           </div>

@@ -25,6 +25,7 @@ const login = async (account) => {
     localStorage.setItem('refreshToken', res.data.refreshToken)
     data = {}
   }).catch((error) => {
+    console.log(error.response)
     if (error.response) data = error.response.data
     else data = { message: error.message }
   })

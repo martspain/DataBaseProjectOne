@@ -33,8 +33,19 @@ const getArtistsAccounts = async () => {
   return data
 }
 
+const deactivateArtist = async (artist) => {
+  let data = null
+  await axios.put(`${NURL}/deactivateArtist`, { artist }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
 export {
   becomeArtist,
   getArtist,
   getArtistsAccounts,
+  deactivateArtist,
 }

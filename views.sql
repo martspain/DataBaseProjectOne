@@ -11,15 +11,15 @@ SELECT * FROM
 
 CREATE VIEW artist_sales_per_date AS
 SELECT * FROM Artist A INNER JOIN
-(SELECT SA.artist_id, R.rep_date, (COUNT(R.id) * 0.006) AS sales FROM Reproduction R
+(SELECT SA.artist_id, R.rep_date, (COUNT(R.id) * 0.003) AS sales FROM Reproduction R
 INNER JOIN Song_Artist SA ON R.song_id = SA.song_id
-GROUP BY SA.artist_id, R.rep_date) B ON A.id = B.artist_id
+GROUP BY SA.artist_id, R.rep_date) B ON A.id = B.artist_id;
 
 CREATE VIEW genre_sales_per_date AS
-SELECT G.id, G.name, R.rep_date AS date, (COUNT(R.id) * 0.006) AS sales 
+SELECT G.id, G.name, R.rep_date AS date, (COUNT(R.id) * 0.009) AS sales 
 FROM Reproduction R INNER JOIN Song_Genre SG ON R.song_id = SG.song_id
 INNER JOIN Genre G ON SG.genre_id = G.id
-GROUP BY G.id, G.name, R.rep_date
+GROUP BY G.id, G.name, R.rep_date;
 
 CREATE VIEW song_reproduction_count_by_artist AS
 SELECT A.id AS artist_id, S.id, S.name, S.duration_ms, S.active,
@@ -28,4 +28,4 @@ FROM Reproduction R INNER JOIN Song S ON R.song_id = S.id
 INNER JOIN Song_Artist SA ON S.id = SA.song_id
 INNER JOIN Artist A ON SA.artist_id = A.id
 INNER JOIN Album ALB ON S.album_id = ALB.id
-GROUP BY A.id, S.id, S.name, S.duration_ms, S.active, S.preview_url, S.album_id, ALB.name, cover
+GROUP BY A.id, S.id, S.name, S.duration_ms, S.active, S.preview_url, S.album_id, ALB.name, cover;

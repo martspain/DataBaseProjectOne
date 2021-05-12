@@ -43,9 +43,31 @@ const getSubscribedAccounts = async () => {
   return data
 }
 
+const deactivateNonSubscribed = async (account) => {
+  let data = null
+  await axios.put(`${NURL}/deactivateNonSubscribed`, { account }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.response.data }
+  })
+  return data
+}
+
+const removeSubscription = async (account) => {
+  let data = null
+  await axios.put(`${NURL}/removeSubscription`, { account }).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.response.data }
+  })
+  return data
+}
+
 export {
   becomePremium,
   becomeManager,
   getNonSubscribedAccounts,
   getSubscribedAccounts,
+  deactivateNonSubscribed,
+  removeSubscription,
 }

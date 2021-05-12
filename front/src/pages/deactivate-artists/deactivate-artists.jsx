@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ButtonLight from '../../components/button-light/button-light'
 import InputLight from '../../components/input-light/input-light'
 import TextLight from '../../components/text-light/text-light'
-import { getArtistsAccounts } from '../../services/artistService'
+import { deactivateArtist, getArtistsAccounts } from '../../services/artistService'
 import TEXTS from '../../services/texts'
 import styles from './deactivate-artists.css'
 
@@ -18,6 +18,12 @@ const DeactivateArtists = () => {
   const handleInputChangeSearch = (event) => {
     const { value } = event.target
     setToFind(value)
+  }
+
+  const changeActive = (artist) => {
+    deactivateArtist({ id: artist.id, active: !artist.active }).then(() => {
+      getArtistsAccounts().then((res) => setData(res))
+    })
   }
 
   return (
@@ -51,9 +57,9 @@ const DeactivateArtists = () => {
             {
               (account.active)
                 ? (
-                  <ButtonLight text="Deactivate" onClick={() => {}} />
+                  <ButtonLight text="Deactivate" onClick={() => changeActive(account)} />
                 ) : (
-                  <ButtonLight text="Activate" onClick={() => {}} />
+                  <ButtonLight text="Activate" onClick={() => changeActive(account)} />
                 )
             }
           </div>

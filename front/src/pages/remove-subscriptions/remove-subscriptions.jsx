@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ButtonLight from '../../components/button-light/button-light'
 import InputLight from '../../components/input-light/input-light'
 import TextLight from '../../components/text-light/text-light'
-import { getSubscribedAccounts } from '../../services/subscriptionService'
+import { getSubscribedAccounts, removeSubscription } from '../../services/subscriptionService'
 import TEXTS from '../../services/texts'
 import styles from './remove-subscriptions.css'
 
@@ -17,6 +17,12 @@ const RemoveSubscriptions = () => {
   const handleInputChangeSearch = (event) => {
     const { value } = event.target
     setToFind(value)
+  }
+
+  const removeSubs = (account) => {
+    removeSubscription({ username: account.username }).then(() => {
+      getSubscribedAccounts().then((res) => setData(res))
+    })
   }
 
   return (
@@ -44,7 +50,7 @@ const RemoveSubscriptions = () => {
             <div className={`${!account.active ? styles.deactive : {}} ${styles['is-active']}`}>
               <TextLight text={account.active ? 'Active' : 'Deactive'} type={TEXTS.TITLE3} />
             </div>
-            <ButtonLight text="Remove Subscription" onClick={() => {}} />
+            <ButtonLight text="Remove Subscription" onClick={() => removeSubs(account)} />
           </div>
         ))
       }
