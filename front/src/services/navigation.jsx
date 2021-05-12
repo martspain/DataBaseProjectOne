@@ -1,6 +1,8 @@
 import React from 'react'
 import Become from '../pages/become/become'
 import Binnacle from '../pages/binnacle/binnacle'
+import DeactivateInactiveFree from '../pages/deactivate-inactive-free/deactivate-inactive-free'
+import RemoveSubscriptions from '../pages/deactivate-subscriptions/remove-subscriptions'
 import Discover from '../pages/discover/discover'
 import Login from '../pages/login/login'
 import MakeMonitor from '../pages/make-monitor/make-monitor'
@@ -27,6 +29,8 @@ const SCREENS = {
   UPDATESONG: () => (<UpdateSong />),
   UPDATEALBUM: () => (<UpdateAlbum />),
   BINNACLE: () => (<Binnacle />),
+  REMOVESUBSCRIPTIONS: () => (<RemoveSubscriptions />),
+  DEACTIVATEINACTIVEFREE: () => (<DeactivateInactiveFree />),
 }
 
 export default SCREENS

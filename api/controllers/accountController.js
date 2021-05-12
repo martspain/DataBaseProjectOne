@@ -22,56 +22,61 @@ const createAccount = (request, response) => {
 
 const login = (request, response) => {
     const data = request.body.account
-    connection.pool.query(`SELECT username,first_name,last_name,email
+    connection.pool.query(`SELECT username
     FROM Account WHERE username = '${data.username}'`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
         else {
             if (results.rowCount > 0) {
-                connection.pool.query(`SELECT username,first_name,last_name,email
+                connection.pool.query(`SELECT username,first_name,last_name,email,active
                 FROM Account WHERE username = '${data.username}' AND password = '${data.password}'`,
                 async (error, results) => {
                     if (error) response.status(500).json({ message: error.detail })
                     else {
                         if (results.rowCount > 0) {
                             const user = { account: results.rows[0] }
-                            try {
-                                const { rows } = await connection.pool.query(`SELECT * FROM Subscription 
-                                WHERE username = '${user.account.username}'`)
-                                user.subscription = rows[0]
-                            } catch (error) {
-                                response.status(500).json({ message: error.detail })
+                            if (user.account.active) {
+                                try {
+                                    const { rows } = await connection.pool.query(`SELECT * FROM Subscription 
+                                    WHERE username = '${user.account.username}' AND renewal_date >= CURRENT_DATE`)
+                                    user.subscription = rows[0]
+                                } catch (error) {
+                                    response.status(500).json({ message: error.detail })
+                                }
+                                try {
+                                    const { rows } = await connection.pool.query(`SELECT * FROM Artist 
+                                    WHERE username = '${user.account.username}'`)
+                                    user.artist = rows[0]
+                                } catch (error) {
+                                    response.status(500).json({ message: error.detail })
+                                }
+                                try {
+                                    const { rows } = await connection.pool.query(`SELECT * FROM Manager 
+                                    WHERE username = '${user.account.username}'`)
+                                    user.manager = rows[0]
+                                } catch (error) {
+                                    response.status(500).json({ message: error.detail })
+                                }
+                                try {
+                                    const { rows } = await connection.pool.query(`SELECT * FROM Monitor 
+                                    WHERE username = '${user.account.username}'`)
+                                    user.monitor = rows[0]
+                                } catch (error) {
+                                    response.status(500).json({ message: error.detail })
+                                }
+                                const token = jwt.sign({ user },
+                                    secretPassword,
+                                    { expiresIn: '10m' }
+                                )
+                                const refreshToken = jwt.sign({ user },
+                                    refreshPassword,
+                                    { expiresIn: '1d' }    
+                                )
+                                response.status(200).json({ user, token, refreshToken })
+                            } else {
+                                response.status(401).json({ message: 'Tu cuenta está inactiva! Contacta con un administrador o Monitor tipo A'})
                             }
-                            try {
-                                const { rows } = await connection.pool.query(`SELECT * FROM Artist 
-                                WHERE username = '${user.account.username}'`)
-                                user.artist = rows[0]
-                            } catch (error) {
-                                response.status(500).json({ message: error.detail })
-                            }
-                            try {
-                                const { rows } = await connection.pool.query(`SELECT * FROM Manager 
-                                WHERE username = '${user.account.username}'`)
-                                user.manager = rows[0]
-                            } catch (error) {
-                                response.status(500).json({ message: error.detail })
-                            }
-                            try {
-                                const { rows } = await connection.pool.query(`SELECT * FROM Monitor 
-                                WHERE username = '${user.account.username}'`)
-                                user.monitor = rows[0]
-                            } catch (error) {
-                                response.status(500).json({ message: error.detail })
-                            }
-                            const token = jwt.sign({ user },
-                                secretPassword,
-                                { expiresIn: '10m' }
-                            )
-                            const refreshToken = jwt.sign({ user },
-                                refreshPassword,
-                                { expiresIn: '1d' }    
-                            )
-                            response.status(200).json({ user, token, refreshToken })
+                            
                         } else response.status(401).json({ message: 'Contraseña incorrecta'})
                     }
                 })

@@ -14,6 +14,26 @@ const subscribe = (request, response) => {
     })
 }
 
+const nonSubscribedAccounts = (request, response) => {
+    connection.pool.query(`SELECT username, first_name, last_name, email, active
+    FROM Account WHERE username NOT IN (SELECT username FROM Subscription)`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
+}
+
+const subscribedAccounts = (request, response) => {
+    connection.pool.query(`SELECT A.username, first_name, last_name, email, active, start_date, renewal_date
+    FROM Account A INNER JOIN Subscription S ON A.username = S.username WHERE renewal_date >= CURRENT_DATE`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     subscribe,
+    nonSubscribedAccounts,
+    subscribedAccounts,
 }

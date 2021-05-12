@@ -57,7 +57,11 @@ app.post('/login', account.login)
 /* verifica el token de refresco y genera un nuevo token de acceso */
 app.post('/refreshToken', account.generateRefreshToken)
 /* Suscripcion por mes a la cuenta segun token */
-app.post('/subscribe', verifyToken, subscription.subscribe)
+app.post('/subscription/subscribe', verifyToken, subscription.subscribe)
+/* Devuelve las cuentas que no tienen suscripcion */
+app.get('/subscription/nonSubscribedAccounts', verifyToken, verifyMonitorA, subscription.nonSubscribedAccounts)
+/* Devuelve las cuentas que tienen suscripcion activa */
+app.get('/subscription/subscribedAccounts', verifyToken, verifyMonitorA, subscription.subscribedAccounts)
 /* Todas las canciones y sus artistas */
 app.get('/songs', verifyToken, song.getSongs)
 /* Crea una cancion del artista */

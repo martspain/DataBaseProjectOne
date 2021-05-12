@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { actualTrackObservable, setTrack } from '../../services/reproductionService'
 import styles from './song-card.css'
+import TextLight from '../text-light/text-light'
+import TEXTS from '../../services/texts'
 
 const millisToMinutesAndSeconds = (millis) => {
   const minutes = Math.floor(millis / 60000)
@@ -18,30 +20,47 @@ const SongCard = ({ song }) => {
   }, [actualTrack])
 
   return (
-    <div className={styles.container}>
-      <div>
-        <button type="button" onClick={() => setTrack(song.id)} value="play">
-          <div className={(actualTrack === song.id) ? styles.playing : {}} />
-        </button>
-        <img src={song.cover} alt="song album cover" />
-      </div>
-      <h3>{song.name}</h3>
-      <p>{millisToMinutesAndSeconds(song.duration_ms)}</p>
-      <div>
-        {
-          song.artists?.map((artist) => (
-            <React.Fragment key={artist.artist_id}>
-              <Link to={`/artist/${artist.artist_id}`}>
-                <p>{`${artist.artistic_name}, `}</p>
-              </Link>
-            </React.Fragment>
-          ))
-        }
-      </div>
-      <Link to={`/album/${song.album_id}`}>
-        <h4>{song.album}</h4>
-      </Link>
-    </div>
+    (song.active)
+      ? (
+        <div className={styles.container}>
+          <div>
+            <button type="button" onClick={() => setTrack(song.id)} value="play">
+              <div className={(actualTrack === song.id) ? styles.playing : {}} />
+            </button>
+            <img src={song.cover} alt="song album cover" />
+          </div>
+          <h3>{song.name}</h3>
+          <p>{millisToMinutesAndSeconds(song.duration_ms)}</p>
+          <div>
+            {
+            song.artists?.map((artist) => (
+              <React.Fragment key={artist.artist_id}>
+                <Link to={`/artist/${artist.artist_id}`}>
+                  <p>{`${artist.artistic_name}, `}</p>
+                </Link>
+              </React.Fragment>
+            ))
+          }
+          </div>
+          <Link to={`/album/${song.album_id}`}>
+            <h4>{song.album}</h4>
+          </Link>
+        </div>
+      ) : (
+        <div className={styles['inactive-container']}>
+          <img src={song.cover} alt="song album cover" />
+          <TextLight text={song.name} type={TEXTS.TEXT} />
+          <p>{millisToMinutesAndSeconds(song.duration_ms)}</p>
+          <div>
+            {
+              song.artists?.map((artist) => (
+                <p key={artist.artist_id}>{`${artist.artistic_name}, `}</p>
+              ))
+            }
+          </div>
+          <TextLight text={song.album} type={TEXTS.TEXT} />
+        </div>
+      )
   )
 }
 
@@ -57,6 +76,7 @@ SongCard.propTypes = {
       artist_id: PropTypes.string,
       artistic_name: PropTypes.string,
     })),
+    active: PropTypes.bool,
   }).isRequired,
 }
 

@@ -69,6 +69,18 @@ const UserOptions = () => {
         </Link>
       )}
 
+      {(JSON.parse(localStorage.getItem('user'))?.monitor?.monitor_type === 'A') && (
+        <Link to="/monitor/deactivateInactiveFree">
+          <SectionSelector text="Deactivate Inactive Free Accounts" onClick={() => setSectionSelected('Deactivate Inactive Free')} active={sectionSelected === 'Deactivate Inactive Free'} />
+        </Link>
+      )}
+
+      {(JSON.parse(localStorage.getItem('user'))?.monitor?.monitor_type === 'A') && (
+        <Link to="/monitor/removeSubscriptions">
+          <SectionSelector text="Remove Subscriptions" onClick={() => setSectionSelected('Remove Subscriptions')} active={sectionSelected === 'Remove Subscriptions'} />
+        </Link>
+      )}
+
       {(JSON.parse(localStorage.getItem('user'))?.monitor?.monitor_type === 'B') && (
         <Link to="/binnacle">
           <SectionSelector text="Binnacle" onClick={() => setSectionSelected('Binnacle')} active={sectionSelected === 'Binnacle'} />
