@@ -1,0 +1,114 @@
+$box-shadow-card: 0 0 10px -5px black;
+$green-spofity: #32d055;
+$light-gray-spofity: rgb(226, 226, 226);
+
+.container {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $box-shadow-card;
+    & > a:first-of-type {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 20px 20px 0 20px;
+        img {
+            width: 90%;
+            transition: 0.5s;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+        h3 {
+            margin-top: 10px;
+            color: white;
+            font-size: 0.75em;
+            padding: 0;
+            transition: 0.2s;
+            &:hover {
+                color: $green-spofity;
+            }
+        }
+    }
+    & > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+        a {
+            display: block;
+            text-decoration: none;
+            p {
+                color: $light-gray-spofity;
+                font-size: 0.7em;
+                margin: 0 3px 0 3px;
+                transition: 0.5s;
+                &:hover {
+                    color: $green-spofity;
+                }
+            }
+        }
+    }
+    & > p {
+        margin: 10px 0 5px 0;
+        font-size: 0.65em;
+        color: $light-gray-spofity;
+    }
+}
+
+.inactive-container {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    box-shadow: $box-shadow-card;
+    & > div:first-of-type {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 20px 20px 0 20px;
+        img {
+            width: 90%;
+        }
+        h3 {
+            margin-top: 10px;
+            color: white;
+            font-size: 0.75em;
+            padding: 0;
+        }
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            background-color: rgba(128, 128, 128, 0.5);
+        }
+    }
+    
+    & > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+        p {
+            color: $light-gray-spofity;
+            font-size: 0.7em;
+            margin: 0 3px 0 3px;
+        }
+    }
+    & > p {
+        margin: 10px 0 5px 0;
+        font-size: 0.65em;
+        color: $light-gray-spofity;
+    }
+}

@@ -1,0 +1,49 @@
+$green-spofity: #32d055;
+$dark-green-spofity: #1f8535;
+
+.container {
+    p {
+        font-weight: 600;
+        color: $dark-green-spofity;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="number"], input[type="search"] {
+        border:none;
+        background-color: rgb(230, 230, 230); 
+        border-radius: 25px;
+        outline:none;
+        padding: 0 25px 0 25px;
+        width: 100%;
+        box-sizing: border-box;
+        height: 40px;
+        font-size: 1em;
+        margin-top: 5px;
+        margin-bottom: 30px;
+    }
+    
+    input[type="checkbox"] {
+        width: 25px;
+        height: 25px;
+        margin-top: 15px;
+    }
+
+    input[type="submit"]{
+        width: 100%;
+        box-sizing: border-box;
+        height:40px;
+        border:none;
+        outline:none;
+        font-size: 1em;
+        border-radius: 25px;
+        font-weight: bold;
+        background-color: $green-spofity;
+        color: $dark-green-spofity;
+        transition: .2s;
+    }
+    input[type="submit"]:hover{
+        cursor:pointer;
+        background-color:$dark-green-spofity; 
+        color: $green-spofity;
+        font-size: 1.2em;
+    }
+}

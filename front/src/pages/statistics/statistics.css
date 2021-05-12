@@ -1,0 +1,19 @@
+$green-spofity: #32d055;
+$box-shadow-card: 0 0 10px -5px black;
+
+.container {
+    margin-bottom: 50px;
+    
+    .stat-container {
+        margin: 40px 0 0 0px;
+        h2 {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin: 0 0 0 50px;
+        }
+        & > p {
+            color: white;
+            margin: 5px 0 0 75px;
+        }
+    }
+}

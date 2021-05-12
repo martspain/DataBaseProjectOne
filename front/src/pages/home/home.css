@@ -1,0 +1,25 @@
+.container {
+    height: calc(100vh - 130px);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+
+    .content-container {
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow-x: hidden;
+        overflow-y: scroll;
+
+        .song-search-bar {
+            border: 0;
+            padding: 10px;
+            border-radius: 25px;
+            background-image: url('../../assets/searchIcon.png');
+            background-size: 25px;
+            background-repeat: no-repeat;
+            margin: 25px;
+            width: calc(100% - 50px);
+            box-sizing: border-box;
+            background-position: calc(100% - 10px);
+        }
+    }
+}

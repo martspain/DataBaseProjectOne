@@ -9,8 +9,13 @@
 </head>
 
 <body>
-    <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
-    <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
+    <h1>Spofity Web Script to fetch API and get Spotify Albums, songs and artists</h1>
+    <h2>Edit this file and change</h2>
+    <ul>
+        <li>Album id from spotify on getAlbum method parameter</li>
+        <li>Spotify account 'Authorization' token on headers</li>
+    </ul>
+    <h2>Get the INSERTS SQL queries on the console.</h2>
 
     <iframe src="https://open.spotify.com/embed/track/2NvBw1uhQZjyXsjVnABkOu" width="300" height="380" frameborder="0"
         allowtransparency="true" allow="encrypted-media"></iframe>
@@ -19,7 +24,7 @@
         const getAlbum = async (albumId) => {
             const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
                 headers: {
-                    'Authorization': 'Bearer BQDRL0jRVupaDbO6u40sxpfMDk_ccB0pfdegjvVqKQ64-zP8H3CKkYBQ6CpZe4xO3g-lSC2i-mxn_bHQrk-UOB7KYYv02gINC6-z8vAeG5b4AoJ0_PSuzn3ymGdJhH1OUA_Xu6CXbG5uHR9MbYhJwRxaJIHRdg'
+                    'Authorization': 'Bearer BQDz0wedeKZuxbs3OEka6EMiUqXZJBBkFgTXSSDpHi_nNbr3gHfWAZnL_Lo_Mgx6uClKYoHtZAaVcO_OUVLuHmq69AAFaQqVFphAnwM4yK_ac8CXGHb6SWp3EWt4BV9gs_3Ufo15k8KSX1Z1juqGORQT9IH53g'
                 }
             })
             try {
@@ -30,7 +35,7 @@
             }
         }
 
-        getAlbum('2Lq2qX3hYhiuPckC8Flj21').then(res => {
+        getAlbum('5dIOYzNU5iuETezRGFM9ER').then(res => {
             console.log(res)
             const album = {
                 'id': res.id,

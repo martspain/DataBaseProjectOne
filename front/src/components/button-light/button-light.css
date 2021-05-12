@@ -1,0 +1,34 @@
+$green-spofity: #32d055;
+$dark-green-spofity: #1f8535;
+
+.container {
+    width: 100%;
+    
+    button {
+        background-color: $green-spofity;
+        border: 0;
+        border-radius: 25px;
+        width: stretch;
+        height: 40px;
+        margin: 15px;
+        box-shadow: 0 5px 20px -8px black;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.2s;
+
+        p {
+            color: $dark-green-spofity;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        &:hover {
+            transform: scale(1.05);
+            p {
+                font-size: 1.1em;
+            }
+        }
+    }
+}

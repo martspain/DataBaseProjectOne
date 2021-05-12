@@ -1,0 +1,160 @@
+$box-shadow-card: 0 0 10px -5px black;
+$green-spofity: #32d055;
+$dark-green-spofity-lucid: #1f8435b2;
+
+.container {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 5px 25px 5px 25px;
+    box-shadow: $box-shadow-card;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 5fr 5fr 1fr;
+    transition: 0.5s;
+
+    button {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        
+        .simple-play-song {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            height: 100%;
+
+            & > div {
+                background-color: rgba(0, 0, 0, 0.25);
+                width: 50px;
+                border: 0;
+                height: 100%;
+                transition: 0.5s;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                div {
+                    width: 0;
+                    height: 0;
+                    display: block;
+                    position: relative;
+                    border-left: 20px solid transparent;
+                    border-top: 10px solid transparent;
+                    border-bottom: 10px solid transparent;
+                    transition: 0.5s;
+                }
+                .playing {
+                    border-left: 20px solid $green-spofity;
+                    transform: scale(1.5);
+                }
+            }
+            h3 {
+                color: white;
+                padding: 0;
+                margin-left: 15px;
+                font-size: 1.05em;
+                transition: 0.5s;
+            }
+            .playing-title {
+                color: $green-spofity;
+            }
+
+            &:hover {
+                & > div {
+                    div {
+                        border-left: 20px solid $dark-green-spofity-lucid;
+                        transform: scale(1);
+                    }
+                    .playing {
+                        border-left: 20px solid $green-spofity;
+                        transform: scale(1.5);
+                    }
+                }
+                h3 {
+                    color: $green-spofity;
+                }
+            }
+        }
+    }
+
+    .simple-song-artists {
+        display: flex;
+        align-items: center;
+        a {
+            text-decoration: none;
+            p {
+                color: white;
+                margin-right: 15px;
+                transition: 0.5s;
+            }
+            &:hover {
+                p {
+                    color: $green-spofity;
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+    & > p {
+        color: white;
+        align-self: center;
+    }
+}
+
+.inactive-container {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 5px 25px 5px 25px;
+    box-shadow: $box-shadow-card;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 5fr 5fr 1fr;
+    transition: 0.5s;
+    position: relative;
+        
+    .simple-play-song {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        .play {
+            background-color: rgba(0, 0, 0, 0.25);
+            width: 50px;
+            border: 0;
+            height: 100%;
+        }
+        
+        & > div:last-child {
+            display: flex;
+            align-items: center;
+            p {
+                color:white;
+                margin-left: 15px;
+            }
+        }
+    }
+
+    .simple-song-artists {
+        display: flex;
+        align-items: center;
+        p {
+            color: white;
+            margin-right: 15px;
+            transition: 0.5s;
+        }
+    }
+
+    & > p {
+        color: white;
+        align-self: center;
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        background-color: rgba(128, 128, 128, 0.5);
+        z-index: 1;
+    }
+}

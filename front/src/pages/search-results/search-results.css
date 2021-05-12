@@ -1,0 +1,15 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 20px;
+    & > div {
+        width: 100%;
+
+        & > p {
+            color: white;
+            position: relative;
+            left: 10px;
+            font-size: 0.9em;
+        }
+    }
+}

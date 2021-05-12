@@ -1,0 +1,40 @@
+$box-shadow-card: 0 0 10px -5px black;
+$deactive: #f75722;
+
+.container {
+    & > div:first-child {
+        margin: 15px;
+    }
+    .account-container {
+        display: grid;
+        grid-template-columns: 3fr 2fr 2fr 3fr 1fr 2fr;
+        background-color: rgba(0, 0, 0, 0.25);
+        margin: 15px;
+        box-shadow: $box-shadow-card;
+
+        & > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & > h3 {
+                margin-left: 15px;
+            }
+
+            & > p {
+                color: white;
+                font-size: 0.8em;
+            }
+        }
+
+        .is-active {
+            font-size: 0.8em;
+        }
+        
+        .deactive {
+            h3 {
+                color: $deactive;
+            }
+        }
+    }
+}

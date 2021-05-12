@@ -30,6 +30,17 @@ const search = (request, response) => {
     })
 }
 
+const searchArtist = (request, response) => {
+    const toFind = request.body.toFind
+    connection.pool.query(`SELECT ROW_TO_JSON(X) AS found FROM (SELECT * FROM Artist
+    WHERE artistic_name ILIKE '%${toFind}%') X`,
+    (error, results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     search,
+    searchArtist,
 }

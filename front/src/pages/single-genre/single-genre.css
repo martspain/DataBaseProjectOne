@@ -1,0 +1,16 @@
+.container {
+    & > h1 {
+        color: white;
+        font-weight: 800;
+        font-size: 4em;
+        margin-left: 25px;
+    }
+    & > p {
+        color: white;
+        margin-left: 50px;
+        font-size: 2em;
+    }
+    .single-genre-songs {
+        margin: 25px;
+    }
+}

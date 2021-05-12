@@ -1,0 +1,21 @@
+.container {
+    margin-top: 50px;
+
+    .grid-container {
+        display: grid;
+        max-width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        margin: 0 50px 0 50px;
+
+        & > div {
+            margin-top: 15px;
+        }
+
+        div{
+            & > p {
+                color: white;
+                margin-left: 10px;
+            }
+        }
+    }
+}
