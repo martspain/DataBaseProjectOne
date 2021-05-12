@@ -32,7 +32,13 @@ const Binnacle = () => {
       </div>
       {
         data.map((register) => (
-          <div className={styles.register}>
+          <div
+            key={`${register.author} 
+          ${register.table_affected} 
+          ${register.action} 
+          ${register.record_date}`}
+            className={styles.register}
+          >
             <TextLight text={register.author} type={TEXTS.TEXT} />
             <TextLight text={register.table_affected} type={TEXTS.TEXT} />
             <TextLight text={register.action} type={TEXTS.TEXT} />

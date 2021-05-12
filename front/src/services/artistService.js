@@ -23,7 +23,18 @@ const getArtist = async (id) => {
   return data
 }
 
+const getArtistsAccounts = async () => {
+  let data = null
+  await axios.get(`${NURL}/accounts`).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.message }
+  })
+  return data
+}
+
 export {
   becomeArtist,
   getArtist,
+  getArtistsAccounts,
 }

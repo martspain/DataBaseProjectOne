@@ -4,7 +4,7 @@ const port = 3000
 const cors = require('cors')
 const account = require('./controllers/accountController')
 const { getAlbums, getAlbum, createAlbum, updateAlbum } = require('./controllers/albumController')
-const { getArtist, createArtist } = require('./controllers/artistController')
+const { getArtist, createArtist, getArtistsAccounts } = require('./controllers/artistController')
 const { createManager } = require('./controllers/managerController')
 const { createPlaylist, getPlaylists } = require('./controllers/playlistController')
 const { search, searchArtist } = require('./controllers/searchController')
@@ -78,6 +78,9 @@ app.get('/albums/:id', verifyToken, getAlbum)
 app.put('/albums', verifyToken, verifyMonitorA, updateAlbum)
 /* Crea un artista para el usuario logeado */ 
 app.post('/artists', verifyToken, createArtist)
+/* Obtiene todas las cuentas de los usuarios que son artistas */
+/* Esta tiene que ir antes de /artists/:id para que no haya conflicto */
+app.get('/artists/accounts', verifyToken, verifyMonitorB, getArtistsAccounts)
 /* Artista y sus albumes */
 app.get('/artists/:id', verifyToken, getArtist)
 /* Busca por nombre de cancion, nombre de artista, nombre de album y genero */

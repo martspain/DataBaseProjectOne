@@ -2,7 +2,7 @@ import React from 'react'
 import Become from '../pages/become/become'
 import Binnacle from '../pages/binnacle/binnacle'
 import DeactivateInactiveFree from '../pages/deactivate-inactive-free/deactivate-inactive-free'
-import RemoveSubscriptions from '../pages/deactivate-subscriptions/remove-subscriptions'
+import RemoveSubscriptions from '../pages/remove-subscriptions/remove-subscriptions'
 import Discover from '../pages/discover/discover'
 import Login from '../pages/login/login'
 import MakeMonitor from '../pages/make-monitor/make-monitor'
@@ -14,6 +14,7 @@ import SingleGenre from '../pages/single-genre/single-genre'
 import Statistics from '../pages/statistics/statistics'
 import UpdateAlbum from '../pages/update-album/update-album'
 import UpdateSong from '../pages/update-song/update-song'
+import DeactivateArtists from '../pages/deactivate-artists/deactivate-artists'
 
 const SCREENS = {
   LOGIN: () => (<Login />),
@@ -31,6 +32,7 @@ const SCREENS = {
   BINNACLE: () => (<Binnacle />),
   REMOVESUBSCRIPTIONS: () => (<RemoveSubscriptions />),
   DEACTIVATEINACTIVEFREE: () => (<DeactivateInactiveFree />),
+  DEACTIVATEARTISTS: () => (<DeactivateArtists />),
 }
 
 export default SCREENS
