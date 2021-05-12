@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { URL } from './accountService'
+import URL from './url'
 
 const NURL = `${URL}/monitors`
 

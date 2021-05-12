@@ -1,6 +1,6 @@
 import axios from 'axios'
-
-const URL = 'http://localhost:3000'
+import { clearTrack } from './reproductionService'
+import URL from './url'
 
 const token = {
   token: null,
@@ -25,7 +25,6 @@ const login = async (account) => {
     localStorage.setItem('refreshToken', res.data.refreshToken)
     data = {}
   }).catch((error) => {
-    console.log(error.response)
     if (error.response) data = error.response.data
     else data = { message: error.message }
   })
@@ -58,10 +57,10 @@ const logout = () => {
   token.token = null
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('user')
+  clearTrack()
 }
 
 export {
-  URL,
   login,
   signup,
   refreshToken,

@@ -6,7 +6,6 @@ const subscribe = (request, response) => {
     const username = request.user.account.username
     connection.pool.query(`CALL BIN_CONTROL_INS('${username}', 'Subscription', '${username}')`,
     (error, results) => {
-        console.log(results)
         if (error) response.status(500).json({ message: error.detail })
         else response.status(201).json({ message: 'Subscription renewed' })
     })

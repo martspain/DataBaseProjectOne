@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Observable } from 'rxjs'
-import { URL } from './accountService'
+import URL from './url'
 
 const NURL = `${URL}/reproduction`
 
@@ -51,6 +51,10 @@ const setTrack = (id) => {
   }
 }
 
+const clearTrack = () => {
+  actualTrack = new Track('')
+}
+
 const actualTrackObservable = new Observable((subscriber) => {
   setInterval(() => {
     subscriber.next(getTrack())
@@ -60,5 +64,6 @@ const actualTrackObservable = new Observable((subscriber) => {
 export {
   getTrack,
   setTrack,
+  clearTrack,
   actualTrackObservable,
 }
