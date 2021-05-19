@@ -9,7 +9,7 @@ This is a custom music streaming app based on spotify data, using the technologi
 | ---------- |:---------:|
 |PostgreSQL  |Relational Database to storage a custom schema, create complex queries, procedures, triggers, views and indexes.  |
 |Node JS Express | Serves the data to the web application, manage/protect routes and accounts authentication. |
-|React | Show data on a esthetic UI, limit role functions, play songs and have an easy development by reusing components |
+|React | Show data on an esthetic UI, limit role functions, play songs and have an easy development by reusing components |
 
 ## Instalation
 
