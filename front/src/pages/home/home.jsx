@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react'
 import { Redirect, Route, useHistory } from 'react-router-dom'
 import UserOptions from '../../components/user-options/user-options'

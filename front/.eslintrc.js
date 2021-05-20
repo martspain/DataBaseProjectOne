@@ -26,6 +26,7 @@ module.exports = {
     semi: ['error', 'never'],
     'global-require': 'off',
     'react/jsx-fragments': 'off', // Disabled because the react version specified suppourts fragments
+    'linebreak-style': 'off',
     'no-console': 'off', // TODO: Only for dev mode
   },
 }
