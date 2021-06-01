@@ -17,6 +17,11 @@ $dark-green-spofity: #1f8535;
         font-weight: 500;
     }
 
+    .correct {
+        color: $green-spofity;
+        font-weight: 500;
+    }
+
     .section-title {
         color: white;
         margin: 5px 0 5px 25px;

@@ -61,9 +61,12 @@ const actualTrackObservable = new Observable((subscriber) => {
   }, 100)
 })
 
+const generateReproductions = (data) => axios.post(`${NURL}/generateReproductions`, { data })
+
 export {
   getTrack,
   setTrack,
   clearTrack,
   actualTrackObservable,
+  generateReproductions,
 }

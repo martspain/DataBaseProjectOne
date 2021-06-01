@@ -1,0 +1,23 @@
+$green-spofity: #32d055;
+$dark-green-spofity: #1f8535;
+
+.container {
+  p {
+    font-weight: 600;
+    color: $dark-green-spofity;
+  }
+
+  select {
+    border:none;
+    background-color: rgb(230, 230, 230); 
+    border-radius: 25px;
+    outline:none;
+    padding: 0 25px 0 25px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 1em;
+    margin-top: 5px;
+    margin-bottom: 30px;
+  }
+}

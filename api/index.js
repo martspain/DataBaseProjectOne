@@ -30,7 +30,7 @@ const {
     genreSalesByDate,
     mostPlayedSongsByArtist,
 } = require('./controllers/statisticsController')
-const { createReproduction, accountReproductions } = require('./controllers/reproductionController')
+const { createReproduction, accountReproductions, generateReproductions } = require('./controllers/reproductionController')
 const { getGenre } = require('./controllers/genreController')
 const { getNoMonitors, createMonitor } = require('./controllers/monitorController')
 const { getBinnacle } = require('./controllers/binnacleController')
@@ -119,6 +119,8 @@ app.post('/statistics/genreSalesByDate', verifyToken, verifyMonitorB, genreSales
 app.post('/statistics/mostPlayedSongsByArtist', verifyToken, verifyMonitorB, mostPlayedSongsByArtist)
 /* Obtener playlists de un usuario especifico*/
 app.get('/playlists/:id', verifyToken, verifySubscription, getPlaylists)
+/* Genera reproducciones de manera aleatoria segun la cantidad y fechas indicadas */
+app.post('/reproduction/generateReproductions', verifyToken, verifyManager, generateReproductions)
 /* Crea una reproduccion de una cancion por un usuario */
 app.post('/reproduction/:id', verifyToken, createReproduction)
 /* Devuelve la cantidad de reproducciones de un usuario */

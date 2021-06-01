@@ -6,6 +6,7 @@ const TEXTS = {
   ERROR: 'error',
   LINK: 'link',
   WARNING: 'warning',
+  CORRECT: 'correct',
   SECTIONTITLE: 'section-title',
 }
 

@@ -1,0 +1,27 @@
+$green-spofity: #32d055;
+
+.container {
+    margin-top: 50px;
+
+    h2 {
+        margin-left: 30px;
+    }
+    
+    .inputs-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        & > div {
+            margin: 15px;
+
+            & > p {
+                color: $green-spofity;
+            }
+
+            &:last-child {
+                width: 200px;
+            }
+        }
+    }
+}

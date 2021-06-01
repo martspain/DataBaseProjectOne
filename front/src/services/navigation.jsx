@@ -15,6 +15,7 @@ import Statistics from '../pages/statistics/statistics'
 import UpdateAlbum from '../pages/update-album/update-album'
 import UpdateSong from '../pages/update-song/update-song'
 import DeactivateArtists from '../pages/deactivate-artists/deactivate-artists'
+import GenerateReproductions from '../pages/generate-reproductions/generate-reproductions'
 
 const SCREENS = {
   LOGIN: () => (<Login />),
@@ -33,6 +34,7 @@ const SCREENS = {
   REMOVESUBSCRIPTIONS: () => (<RemoveSubscriptions />),
   DEACTIVATEINACTIVEFREE: () => (<DeactivateInactiveFree />),
   DEACTIVATEARTISTS: () => (<DeactivateArtists />),
+  GENERATEREPRODUCTIONS: () => (<GenerateReproductions />),
 }
 
 export default SCREENS

@@ -4,7 +4,9 @@ import InputLight from '../../components/input-light/input-light'
 import TextLight from '../../components/text-light/text-light'
 import { login, signup } from '../../services/accountService'
 import TEXTS from '../../services/texts'
+import countriesList from '../../services/countries'
 import styles from './signup.css'
+import SelectLight from '../../components/select-light/select-light'
 
 const Signup = () => {
   const [account, setAccount] = useState({
@@ -14,6 +16,7 @@ const Signup = () => {
     first_name: '',
     last_name: '',
     email: '',
+    country: 'NO COUNTRY SPECIFIED',
   })
   const [message, setMessage] = useState('')
   const [resMessage, setResMessage] = useState('')
@@ -49,6 +52,8 @@ const Signup = () => {
         setResMessage('Completa todos los campos')
       } else if (account.username.includes(' ')) {
         setResMessage('Tu nombre de usuario no puede contener espacios en blanco')
+      } else if (account.country === 'NO COUNTRY SPECIFIED') {
+        setResMessage('Selecciona un país!')
       } else {
         signup(account).then((res) => {
           if (res.message) setResMessage(res.message)
@@ -78,6 +83,7 @@ const Signup = () => {
         <InputLight title="First Name" type="text" name="first_name" value={account.first_name} onChange={handleInputChange} placeHolder="Enter Your First Name" />
         <InputLight title="Last Name" type="text" name="last_name" value={account.last_name} onChange={handleInputChange} placeHolder="Enter Your Last Name" />
         <InputLight title="Email" type="email" name="email" value={account.email} onChange={handleInputChange} placeHolder="Enter Email" />
+        <SelectLight title="Country" name="country" value={account.country} onChange={handleInputChange} options={countriesList} defaultOption="NO COUNTRY SPECIFIED" />
         <TextLight text={resMessage} type={TEXTS.ERROR} />
         <InputLight type="submit" name="signup" value="SIGNUP" onChange={() => { }} />
         <Link to="/login">

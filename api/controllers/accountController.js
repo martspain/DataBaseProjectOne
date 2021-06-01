@@ -5,8 +5,8 @@ const { secretPassword, refreshPassword } = require('../verificator');
 
 const createAccount = (request, response) => {
     const data = request.body.account
-    connection.pool.query(`INSERT INTO Account(username,password,first_name,last_name,email)
-    VALUES('${data.username}','${data.password}','${data.first_name}','${data.last_name}','${data.email}')`,
+    connection.pool.query(`INSERT INTO Account(username,password,first_name,last_name,email,country)
+    VALUES('${data.username}','${data.password}','${data.first_name}','${data.last_name}','${data.email}','${data.country}')`,
     (error, results) => {
         if (error) response.status(500).json({ message: error.detail })
         else {
