@@ -7,19 +7,26 @@ $green-spofity: #32d055;
         margin-left: 30px;
     }
     
-    .inputs-container {
+    .action-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        margin-top: 15px;
 
         & > div {
-            margin: 15px;
+            margin: 10px;
+
+            input {
+                margin-bottom: 0;
+            }
 
             & > p {
                 color: $green-spofity;
             }
-
+            
             &:last-child {
+                margin-top: 0;
                 width: 200px;
             }
         }

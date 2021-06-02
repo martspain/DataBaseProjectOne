@@ -59,6 +59,7 @@ const Home = () => {
             <Route path="/monitor/deactivateArtists" component={SCREENS.DEACTIVATEARTISTS} />
             <Route path="/monitor/binnacle" component={SCREENS.BINNACLE} />
             <Route path="/generateReproductions" component={SCREENS.GENERATEREPRODUCTIONS} />
+            <Route path="/migrateReproductionsPerDate" component={SCREENS.MIGRATEREPSPERDATE} />
             <Redirect to="/" />
           </>
         )}

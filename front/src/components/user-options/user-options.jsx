@@ -99,6 +99,12 @@ const UserOptions = () => {
         </Link>
       )}
 
+      {(JSON.parse(localStorage.getItem('user'))?.manager) && (
+        <Link to="/migrateReproductionsPerDate">
+          <SectionSelector text="Migrate Reproduction per Date" onClick={() => setSectionSelected('Migrate Reproduction per Date')} active={sectionSelected === 'Migrate Reproduction per Date'} />
+        </Link>
+      )}
+
       <Link to="/login">
         <SectionSelector text="Logout" onClick={() => logout()} active={false} />
       </Link>

@@ -34,6 +34,7 @@ const { createReproduction, accountReproductions, generateReproductions } = requ
 const { getGenre } = require('./controllers/genreController')
 const { getNoMonitors, createMonitor } = require('./controllers/monitorController')
 const { getBinnacle } = require('./controllers/binnacleController')
+const { migrateRepsPerDate, getLastUpdate } = require('./controllers/migrationController')
 
 const corsOptions = {
     origin: ['http://localhost:8080']
@@ -133,6 +134,10 @@ app.get('/monitors/noMonitors', verifyToken, verifyMonitorB, getNoMonitors)
 app.post('/monitors', verifyToken, verifyMonitorB, createMonitor)
 /* Devuelve toda la bitacora ordenada por fecha de registro */
 app.get('/binnacle', verifyToken, verifyMonitorB, getBinnacle)
+/* Migra las reproducciones de una fecha dada, de postgres a mongo */
+app.post('/migrate/repsPerDate', verifyToken, verifyManager, migrateRepsPerDate)
+/* Devuelve la fecha de la ultima modificacion de la coleccion de reproducciones por usuario por fecha */
+app.get('/migrate/lastUpdate', verifyToken, verifyManager, getLastUpdate)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

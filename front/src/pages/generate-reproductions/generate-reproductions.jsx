@@ -38,6 +38,8 @@ const GenerateReproductions = () => {
       setMessage('Enter start and end dates')
     } else if (Date.parse(dates.startDate) > Date.parse(dates.endDate)) {
       setMessage('Start date can\'t be grater than end date')
+    } else if (Date.parse(dates.endDate) > new Date().setDate(new Date().getDate() - 1)) {
+      setMessage('End date can\'t be greater than today')
     } else if (dates.quantity <= 0) {
       setMessage('Quantity need to be a positive number')
     } else {
