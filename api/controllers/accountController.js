@@ -107,8 +107,17 @@ const generateRefreshToken = (request, response) => {
     }
 }
 
+const getAllUsers = (request, response) => {
+    connection.pool.query('SELECT username FROM Account',
+    (error,results) => {
+        if (error) response.status(500).json({ message: error.detail })
+        else response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     createAccount,
     login,
     generateRefreshToken,
+    getAllUsers
 }

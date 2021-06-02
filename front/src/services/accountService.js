@@ -60,9 +60,20 @@ const logout = () => {
   clearTrack()
 }
 
+const getAllUsers = async () => {
+  let data = null
+  await axios.get(`${URL}/users`).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.response.data.message }
+  })
+  return data
+}
+
 export {
   login,
   signup,
   refreshToken,
   logout,
+  getAllUsers,
 }

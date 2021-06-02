@@ -34,7 +34,7 @@ const { createReproduction, accountReproductions, generateReproductions } = requ
 const { getGenre } = require('./controllers/genreController')
 const { getNoMonitors, createMonitor } = require('./controllers/monitorController')
 const { getBinnacle } = require('./controllers/binnacleController')
-const { migrateRepsPerDate, getLastUpdate } = require('./controllers/migrationController')
+const { migrateRepsPerDate, getLastUpdate, recommend, recommendRandom } = require('./controllers/migrationController')
 
 const corsOptions = {
     origin: ['http://localhost:8080']
@@ -57,6 +57,8 @@ app.post('/signup', account.createAccount)
 app.post('/login', account.login)
 /* verifica el token de refresco y genera un nuevo token de acceso */
 app.post('/refreshToken', account.generateRefreshToken)
+/* Obtiene los nombres de usuario de todos los usuarios */
+app.get('/users', verifyToken, verifyManager, account.getAllUsers)
 /* Suscripcion por mes a la cuenta segun token */
 app.post('/subscription/subscribe', verifyToken, subscription.subscribe)
 /* Devuelve las cuentas que no tienen suscripcion */
@@ -138,6 +140,9 @@ app.get('/binnacle', verifyToken, verifyMonitorB, getBinnacle)
 app.post('/migrate/repsPerDate', verifyToken, verifyManager, migrateRepsPerDate)
 /* Devuelve la fecha de la ultima modificacion de la coleccion de reproducciones por usuario por fecha */
 app.get('/migrate/lastUpdate', verifyToken, verifyManager, getLastUpdate)
+/* Devuelve 10 recomendaciones de canciones para usuario */
+app.get('/migrate/recommend/:id', verifyToken, verifyManager, recommend)
+app.get('/migrate/recommend/', verifyToken, verifyManager, recommendRandom)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

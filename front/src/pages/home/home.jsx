@@ -60,6 +60,7 @@ const Home = () => {
             <Route path="/monitor/binnacle" component={SCREENS.BINNACLE} />
             <Route path="/generateReproductions" component={SCREENS.GENERATEREPRODUCTIONS} />
             <Route path="/migrateReproductionsPerDate" component={SCREENS.MIGRATEREPSPERDATE} />
+            <Route path="/recommendationToUser" component={SCREENS.RECOMMENDATIONTOUSER} />
             <Redirect to="/" />
           </>
         )}

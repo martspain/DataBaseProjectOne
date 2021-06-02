@@ -17,6 +17,7 @@ import UpdateSong from '../pages/update-song/update-song'
 import DeactivateArtists from '../pages/deactivate-artists/deactivate-artists'
 import GenerateReproductions from '../pages/generate-reproductions/generate-reproductions'
 import MigrateReproductionsPerDate from '../pages/migrate-reproductions-per-date/migrate-reproductions-per-date'
+import RecommendationToUser from '../pages/recommendation-to-user/recommendation-to-user'
 
 const SCREENS = {
   LOGIN: () => (<Login />),
@@ -37,6 +38,7 @@ const SCREENS = {
   DEACTIVATEARTISTS: () => (<DeactivateArtists />),
   GENERATEREPRODUCTIONS: () => (<GenerateReproductions />),
   MIGRATEREPSPERDATE: () => (<MigrateReproductionsPerDate />),
+  RECOMMENDATIONTOUSER: () => (<RecommendationToUser />),
 }
 
 export default SCREENS

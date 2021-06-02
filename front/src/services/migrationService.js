@@ -15,7 +15,18 @@ const getLastUpdate = async () => {
 
 const migrateRepsPerDate = (date) => axios.post(`${NURL}/repsPerDate`, { date })
 
+const recommendation = async (username) => {
+  let data = null
+  await axios.get(`${NURL}/recommend/${username}`).then((res) => {
+    data = res.data
+  }).catch((error) => {
+    data = { message: error.response.data.message }
+  })
+  return data
+}
+
 export {
   getLastUpdate,
   migrateRepsPerDate,
+  recommendation,
 }

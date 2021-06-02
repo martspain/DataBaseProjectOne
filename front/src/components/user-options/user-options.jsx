@@ -105,6 +105,12 @@ const UserOptions = () => {
         </Link>
       )}
 
+      {(JSON.parse(localStorage.getItem('user'))?.manager) && (
+        <Link to="/recommendationToUser">
+          <SectionSelector text="Recommendation to User" onClick={() => setSectionSelected('Recommendation to User')} active={sectionSelected === 'Recommendation to User'} />
+        </Link>
+      )}
+
       <Link to="/login">
         <SectionSelector text="Logout" onClick={() => logout()} active={false} />
       </Link>
