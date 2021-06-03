@@ -151,8 +151,8 @@ const recommendate = (user, response) => {
 
 const recommend = (request, response) => {
     const username = request.params.id
-    ReproductionPerDate.findOne({ username }).then((user) => {
-        recommendate(user[0], response)
+    ReproductionPerDate.findOne({ username: username }).then((user) => {
+        recommendate(user, response)
     }).catch((error) => response.status(500).json({ message: 'Error al obtener usuario' }))
 }
 
