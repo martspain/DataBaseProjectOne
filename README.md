@@ -3,6 +3,8 @@ Web App for music streaming.
 
 ## Spofity
 This is a custom music streaming app based on spotify data, using the technologies marked in Table 1 to meet the requirements of the project.
+[Usage & Functinality video on YouTube](https://www.youtube.com/watch?v=L_-_g7bqr3E&t=2s)
+
 
 ### Table 1
 |Technology|Requirement|
